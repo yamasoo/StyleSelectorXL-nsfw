@@ -1,8 +1,8 @@
 [
   {
     "name": "NONE ",
-    "prompt": "{prompt}"
-    "negative_prompt": ""
+    "prompt": "{prompt}",
+    "negative_prompt": "
   },
   {
     "name": "nyotaimori",
