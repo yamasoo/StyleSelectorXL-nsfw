@@ -1,7 +1,7 @@
 [
   {
     "name": "NONE ",
-    "prompt": "",
+    "prompt": "{prompt}, ",
     "negative_prompt": ""
   },
   {
@@ -90,8 +90,8 @@
     "negative_prompt": ""
   },
   {
-    "name": "covering privates",
-    "prompt": "   covering privates,covering breasts,covering crotch,standingl, {prompt}, ",
+    "name": "遮住重要部位/covering privates",
+    "prompt": "   covering privates,covering breasts,covering crotch,{standing|sitting|lying}, {prompt}, ",
     "negative_prompt": ""
   },
   {
@@ -176,7 +176,7 @@
   },
   {
     "name": "ペットプレイ/pet play",
-    "prompt": "  bdsm,pet play,chain , choker,   , {prompt}, ",
+    "prompt": "  bdsm,pet play,chain , choker, {prompt}, ",
     "negative_prompt": ""
   },
   {
@@ -215,12 +215,12 @@
     "negative_prompt": ""
   },
   {
-    "name": "multiple pussy",
+    "name": "多重マンコ/ multiple pussy",
     "prompt": "  multiple pussy, { 3girls,| 4girls,|  multiple girls,|6+girls,  },from below, thick thighs, bottomless, { 1-3$$ pussy_hair,| pussy juice, anus,| cumdrip,  },  looking down, {prompt}, ",
     "negative_prompt": ""
   },
   {
-    "name": "逆海老吊り",
+    "name": "逆海老吊り/Shrimp tie ",
     "prompt": "  from below,  shibari, bound, bdsm, bondage, suspension,rope,arms behind back, bound ankles, bound torso, on stomach,  nipples,  indoors, japanese aesthetic, stomach,navel,   , {prompt}, ",
     "negative_prompt": ""
   },
@@ -245,7 +245,7 @@
     "negative_prompt": ""
   },
   {
-    "name": "panty pull",
+    "name": "パンティー引き/ panty pull",
     "prompt": "  panty pull,  { 1boy pulling another's clothes| 1girl, pull_own_panties }  ,panties,panty pull,1girl, grabbing  , {prompt}, ",
     "negative_prompt": ""
   },
@@ -265,7 +265,7 @@
     "negative_prompt": ""
   },
   {
-    "name": "松葉崩し",
+    "name": "松葉崩し/Pine Needle Break",
     "prompt": "   1girl,1boy,leg lift,leg up,matsubakuzushi,sex,vaginal,  hetero,  insertion, leg grab, knee grab  , {prompt}, ",
     "negative_prompt": ""
   },
@@ -280,7 +280,7 @@
     "negative_prompt": ""
   },
   {
-    "name": "panty pull(standing on the one leg)",
+    "name": "片足パンティー引き/ panty pull(standing on the one leg)",
     "prompt": " holding panties,standing on one leg,panties around one leg,undressing ,from side,bent over , {prompt}, ",
     "negative_prompt": ""
   },
@@ -370,7 +370,7 @@
     "negative_prompt": ""
   },
   {
-    "name": "土下座",
+    "name": "土下座/dogeza",
     "prompt": "   dogeza, sitting, completely nude, { folded clothes,|dildo,| vibrator, | hitachi magic wand,  } , {tatami, | wooden floor},japanes aesthetic,  ,bdsm,dimples of venus,  top-down bottom-up,   , {prompt}, ",
     "negative_prompt": ""
   },
@@ -405,7 +405,7 @@
     "negative_prompt": ""
   },
   {
-    "name": "smelling masturbation",
+    "name": "臭いオナニー/smelling masturbation",
     "prompt": "   smelling masturbation,female masturbation,smelling {clothes| underwear, } ,1girl,smelling,fingering, {prompt}, ",
     "negative_prompt": ""
   },
@@ -460,12 +460,12 @@
     "negative_prompt": ""
   },
   {
-    "name": "スパイダー騎乗位",
+    "name": "スパイダー騎乗位/cowgirl position",
     "prompt": " cowgirl position, nipple stimulation, 1girl, 1boy, girl on top, pov,  female_lead, {prompt}, ",
     "negative_prompt": ""
   },
   {
-    "name": "バックセックス、ローアングル",
+    "name": "バックセックス、ローアングル/ Sex from behind low angle",
     "prompt": " from below , sex from behind, 1girl, 1boy, hetero,standing sex {prompt}, ",
     "negative_prompt": ""
   },
@@ -475,7 +475,7 @@
     "negative_prompt": ""
   },
   {
-    "name": "glory wall",
+    "name": "栄光の壁/glory wall",
     "prompt": "  glory wall, ass, from behind ,picture frame, through wall,  text on wall,1girl, solo,{school uniform | armor, | suit| swimsuit, | __female_style_combinations/casual__ ,  } , { {  short shorts, |denim shorts,  | panties,| bikini bottoms,| thighhighs,| torn clothes,  } | {1-7$$ pubic hair, |bottomless, pussy, | cum in pussy,  |  pussy juice, | cumdrip, | cum on ass, | defloration,bleeding, | amputee, |  body writing, | body markings,| thighhighs,  } }, {1-7$$ | sex toys,| paddle, |riding crop,| cane,   |anal beads, anal plug | price tag, |price list,| weapon | cum can | id card, | dildo, |huge dildo,| folded clothes,| tissue box, |used tissue, | used condom, |condom box, | condom belt,| barcode,|qr code, |tattoo, }, id photo , graffiti on wall, degrading remarks on wall, text ,name tag, {prompt}, ",
     "negative_prompt": ""
   },
@@ -485,7 +485,7 @@
     "negative_prompt": ""
   },
   {
-    "name": "騎乗フェラ",
+    "name": "騎乗フェラ/ riding fellatio",
     "prompt": "  1girl ,  ( fellatio,blow_job, head_back:1.2) ,view between legs, 1boy lower body, implied fellatio,uncensored, { squatting, | standing, }  {1-4$$ cumdrip| saliva drip,| pussy juice, | grabbing another's ass, | grabbing another's legs,| huge penis, veiny penis,} {prompt}, ",
     "negative_prompt": ""
   },
@@ -530,13 +530,13 @@
     "negative_prompt": ""
   },
   {
-    "name": "踏みちん",
+    "name": "踏みちん/footjob with high heels",
     "prompt": " footjob, 1boy, penis,clothed female nude male,erection, veiny penis,  , evil smile,{1-2$$ high heels,|  thighhighs,} , {prompt}, ",
     "negative_prompt": ""
   },
   {
-    "name": "alcohol insertion",
-    "prompt": " { whiskey, |sake | wine} bottle, ,alcohol insertion, alcohol, anal, anal object insertion, bottomless, , {prompt}, ",
+    "name": "ボトル挿入/ alcohol bottle insertion",
+    "prompt": " { whiskey, |sake | wine} bottle,drunk  ,alcohol insertion, alcohol, anal, anal object insertion, bottomless, , {prompt}, ",
     "negative_prompt": ""
   },
   {
@@ -620,8 +620,8 @@
     "negative_prompt": ""
   },
   {
-    "name": "multiple",
-    "prompt": " multip布団潜り込み/under coversle penetrations, 1girl, multiple boys, penis, sex, group sex, {prompt}, ",
+    "name": "多重插入/multiple",
+    "prompt": " multip penetrations, 1girl, multiple boys, penis, sex, group sex, {prompt}, ",
     "negative_prompt": ""
   },
   {
@@ -630,7 +630,7 @@
     "negative_prompt": ""
   },
   {
-    "name": "multiple insertion",
+    "name": "多物挿入/multiple insertion",
     "prompt": "  multiple insertion, sex toy, vaginal object insertion, anal object insertion,{ 3-4$$ anal beads|, anal plug,| dildo|, huge dildo,| cum in pussy, |penis,|tentacles,   }, spread legs , {prompt}, ",
     "negative_prompt": ""
   },
@@ -655,12 +655,12 @@
     "negative_prompt": ""
   },
   {
-    "name": "布団潜り込み",
+    "name": "布団潜り込み/under covers",
     "prompt": " under covers, {prompt}, ",
     "negative_prompt": ""
   },
   {
-    "name": "IDカード",
+    "name": "IDカード/ID carf ",
     "prompt": " id card covered pussy,completely nude, covering crotch,  {prompt}, ",
     "negative_prompt": ""
   }
