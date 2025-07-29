@@ -2,7 +2,7 @@
   {
     "name": "NONE ",
     "prompt": "{prompt}",
-    "negative_prompt": "
+    "negative_prompt": ""
   },
   {
     "name": "nyotaimori",
