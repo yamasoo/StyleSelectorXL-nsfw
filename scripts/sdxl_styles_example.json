@@ -1,0 +1,12 @@
+[
+  {
+    "name": "base",
+    "prompt": "{prompt}",
+    "negative_prompt": ""
+  },
+  {
+    "name": "photo",
+    "prompt": "photo of {prompt} .reality",
+    "negative_prompt": "blurry, noisy,"
+  }
+]

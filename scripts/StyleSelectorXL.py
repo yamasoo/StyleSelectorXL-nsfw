@@ -1,4 +1,5 @@
 import contextlib
+
 import gradio as gr
 from modules import scripts, shared, script_callbacks
 from modules.ui_components import FormRow, FormColumn, FormGroup, ToolButton
@@ -17,7 +18,7 @@ def get_json_content(file_path):
             return json_data
     except Exception as e:
         print(f"A Problem occurred: {str(e)}")
-        return None
+
 
 def read_sdxl_styles(json_data):
     if not isinstance(json_data, list):
@@ -26,59 +27,65 @@ def read_sdxl_styles(json_data):
     
     names = [item['name'] for item in json_data if isinstance(item, dict) and 'name' in item]
     names.sort()
-    names.insert(0, "random")  # Add "random" as the first option
+    # 在名單前面加入 "Random Select" 選項
+    names.insert(0, "Random Select")
     return names
 
-def getStyles(json_file):
+
+def getStyles():
     global stylespath
-    json_path = os.path.join(scripts.basedir(), json_file)
+    json_path = os.path.join(scripts.basedir(), 'nsfw_styles.json')
     stylespath = json_path
     json_data = get_json_content(json_path)
-    if json_data:
-        return read_sdxl_styles(json_data)
-    return ["base", "random"]
+    return read_sdxl_styles(json_data)
 
-def createPositive(style, positive, append_style):
-    if style == "random":
-        json_data = get_json_content(stylespath)
-        if not json_data:
-            return positive
-        style = random.choice([item['name'] for item in json_data if isinstance(item, dict) and 'name' in item])
-    
+
+def createPositive(style, positive):
     json_data = get_json_content(stylespath)
     try:
         if not isinstance(json_data, list):
             raise ValueError("Invalid JSON data. Expected a list of templates.")
+
+        # 如果選擇了 "Random Select"，隨機選擇一個樣式
+        if style == "Random Select":
+            available_styles = [item['name'] for item in json_data if isinstance(item, dict) and 'name' in item]
+            if available_styles:
+                style = random.choice(available_styles)
+            else:
+                return positive  # 如果沒有可用樣式，返回原始提示
 
         for template in json_data:
             if template.get('name') == style:
-                style_prompt = template['prompt'].replace('{prompt}', positive)
-                return f"{style_prompt}, {positive}" if append_style else f"{positive}, {style_prompt}"
-        return positive
+                return template['prompt'].replace('{prompt}', positive)
+
+        raise ValueError(f"No template found with name '{style}'.")
     except Exception as e:
         print(f"An error occurred: {str(e)}")
-        return positive
+
 
 def createNegative(style, negative):
-    if style == "random":
-        json_data = get_json_content(stylespath)
-        if not json_data:
-            return negative
-        style = random.choice([item['name'] for item in json_data if isinstance(item, dict) and 'name' in item])
-    
     json_data = get_json_content(stylespath)
     try:
         if not isinstance(json_data, list):
             raise ValueError("Invalid JSON data. Expected a list of templates.")
+
+        # 如果選擇了 "Random Select"，隨機選擇一個樣式
+        if style == "Random Select":
+            available_styles = [item['name'] for item in json_data if isinstance(item, dict) and 'name' in item]
+            if available_styles:
+                style = random.choice(available_styles)
+            else:
+                return negative  # 如果沒有可用樣式，返回原始提示
 
         for template in json_data:
             if template.get('name') == style:
                 json_negative_prompt = template.get('negative_prompt', "")
                 return f"{json_negative_prompt}, {negative}" if json_negative_prompt and negative else json_negative_prompt or negative
-        return negative
+
+        raise ValueError(f"No template found with name '{style}'.")
     except Exception as e:
         print(f"An error occurred: {str(e)}")
-        return negative
+        
 
 def append_style_to_json(name, prompt, negative_prompt):
     global stylespath
@@ -108,41 +115,89 @@ def open_json_file():
     except Exception as e:
         print(f"Could not open file: {e}")
 
-def get_json_files():
-    extension_dir = scripts.basedir()
-    return [f for f in os.listdir(extension_dir) if f.endswith('.json')]
+
+def copy_styles_to_prompt_func(current_prompt, current_neg_prompt, style1, style2, style3, style4):
+    """Copy selected non-base styles to prompt and reset styles to base"""
+    current_prompt = current_prompt or ""
+    current_neg_prompt = current_neg_prompt or ""
+    
+    # Collect non-base styles
+    selected_styles = [s for s in [style1, style2, style3, style4] if s and s != 'base']
+    
+    if not selected_styles:
+        return current_prompt, current_neg_prompt, 'base', 'base', 'base', 'base'
+    
+    # Get style prompts
+    positive_styles = []
+    negative_styles = []
+    
+    for style in selected_styles:
+        try:
+            pos_style = createPositive(style, "")
+            neg_style = createNegative(style, "")
+            
+            if pos_style and pos_style.strip():
+                positive_styles.append(pos_style.strip())
+            if neg_style and neg_style.strip():
+                negative_styles.append(neg_style.strip())
+        except Exception as e:
+            print(f"Error processing style {style}: {e}")
+            continue
+    
+    # Combine styles with existing prompts
+    new_prompt = current_prompt
+    if positive_styles:
+        style_text = ", ".join(positive_styles)
+        if current_prompt.strip():
+            new_prompt = f"{current_prompt}, {style_text}"
+        else:
+            new_prompt = style_text
+            
+    new_neg_prompt = current_neg_prompt
+    if negative_styles:
+        style_text = ", ".join(negative_styles)
+        if current_neg_prompt.strip():
+            new_neg_prompt = f"{current_neg_prompt}, {style_text}"
+        else:
+            new_neg_prompt = style_text
+    
+    # Return new prompts and reset all styles to 'base'
+    return new_prompt, new_neg_prompt, 'base', 'base', 'base', 'base'
+
+
+def add_to_main_prompt_func(current_prompt, current_neg_prompt, style_at_beginning):
+    """Add current prompt texts to main A1111 prompt inputs"""
+    # 這個函數會通過 JavaScript 來更新主要的提示輸入框
+    # 由於我們無法直接訪問 A1111 的主要輸入框，這裡返回一個指示信息
+    return f"Ready to add to main prompt:\nPositive: {current_prompt}\nNegative: {current_neg_prompt}\nPosition: {'Beginning' if style_at_beginning else 'End'}"
+
 
 class StyleSelectorXL(scripts.Script):
     def __init__(self) -> None:
         super().__init__()
-        self.styleNames = getStyles("sdxl_styles.json")  # Default JSON file
+    
+    styleNames = getStyles()
 
     def title(self):
-        return "Style Selector for SDXL 1.0 (NSFW)"
+        return "Style Selector for SDXL 1.0"
 
     def show(self, is_img2img):
         return scripts.AlwaysVisible
 
     def ui(self, is_img2img):
         enabled = getattr(shared.opts, "enable_styleselector_by_default", True)
+        
         with gr.Group():
-            with gr.Accordion("SDXL Styles (NSFW)", open=enabled):
+            with gr.Accordion("SDXL Styles", open=False):
                 with FormRow():
                     with FormColumn(min_width=160):
                         is_enabled = gr.Checkbox(value=enabled, label="Enable Style Selector")
-                    with FormColumn(elem_id="Randomize Style"):
-                        randomize = gr.Checkbox(value=False, label="Randomize Style")
-                    with FormColumn(elem_id="Append Style"):
-                        append_style = gr.Checkbox(value=False, label="Place Style at End")
+                    with FormColumn(elem_id="Style At Beginning"):
+                        style_at_beginning = gr.Checkbox(value=False, label="Place Style At Beginning")
 
                 with FormRow():
                     with FormColumn(min_width=160):
-                        json_file = gr.Dropdown(get_json_files(), value='sdxl_styles.json', label="Style JSON File")
-                        json_file.change(
-                            fn=lambda x: getStyles(x),
-                            inputs=[json_file],
-                            outputs=[style1, style2, style3, style4]
-                        )
+                        allstyles = gr.Checkbox(value=False, label="Generate All Styles In Order")
 
                 with FormRow():
                     with FormColumn(min_width=160):
@@ -154,22 +209,78 @@ class StyleSelectorXL(scripts.Script):
                     with FormColumn(min_width=160):
                         style4 = gr.Dropdown(self.styleNames, value='base', multiselect=False, label="Style 4")
 
+                # Copy styles section
+                gr.Markdown("### Copy Styles to Prompt")
+                with FormRow():
+                    with FormColumn():
+                        prompt_preview = gr.Textbox(label="Current Prompt", placeholder="Enter your prompt here", lines=2)
+                    with FormColumn():
+                        neg_prompt_preview = gr.Textbox(label="Current Negative Prompt", placeholder="Enter your negative prompt here", lines=2)
+                        
                 with FormRow():
                     with FormColumn(min_width=160):
-                        append_to_prompt = gr.Button(value="Append Styles to Prompt")
-                        append_to_prompt.click(
-                            fn=self.append_styles_to_prompt,
-                            inputs=[style1, style2, style3, style4, append_style],
-                            outputs=[gr.State(), gr.State()]  # Outputs to WebUI prompt and negative prompt
-                        )
-                    with FormColumn(min_width=160):
-                        open_button = gr.Button(value="Open JSON File")
-                        open_button.click(
-                            fn=lambda: open_json_file(),
-                            inputs=[],
-                            outputs=[]
-                        )
-
+                        use_current_prompt = gr.Checkbox(value=False, label="Use Current Prompt as Style")
+                    with FormColumn(min_width=200):
+                        copy_styles_button = gr.Button(value="Copy Styles to Prompt & Reset to Base", variant="secondary")
+                    with FormColumn(min_width=200):
+                        add_to_main_button = gr.Button(value="Add to Main Prompt", variant="primary")
+                        
+                # Status display for add to main prompt
+                with FormRow():
+                    status_display = gr.Textbox(label="Status", lines=3, interactive=False)
+                        
+                # Set up the copy button functionality
+                copy_styles_button.click(
+                    fn=copy_styles_to_prompt_func,
+                    inputs=[prompt_preview, neg_prompt_preview, style1, style2, style3, style4],
+                    outputs=[prompt_preview, neg_prompt_preview, style1, style2, style3, style4]
+                )
+                
+                # Set up the add to main prompt functionality
+                add_to_main_button.click(
+                    fn=add_to_main_prompt_func,
+                    inputs=[prompt_preview, neg_prompt_preview, style_at_beginning],
+                    outputs=[status_display]
+                )
+                
+                # Add JavaScript to handle adding to main prompt
+                add_to_main_button.click(
+                    fn=None,
+                    inputs=[prompt_preview, neg_prompt_preview, style_at_beginning],
+                    outputs=[],
+                    _js="""
+                    function(current_prompt, current_neg_prompt, at_beginning) {
+                        // 尋找主要的提示輸入框
+                        const mainPromptInput = document.querySelector('#txt2img_prompt textarea, #img2img_prompt textarea');
+                        const mainNegPromptInput = document.querySelector('#txt2img_neg_prompt textarea, #img2img_neg_prompt textarea');
+                        
+                        if (mainPromptInput && current_prompt && current_prompt.trim()) {
+                            const existingPrompt = mainPromptInput.value || '';
+                            if (at_beginning) {
+                                mainPromptInput.value = current_prompt + (existingPrompt ? ', ' + existingPrompt : '');
+                            } else {
+                                mainPromptInput.value = existingPrompt + (existingPrompt ? ', ' + current_prompt : current_prompt);
+                            }
+                            // 觸發 input 事件以確保 gradio 檢測到變化
+                            mainPromptInput.dispatchEvent(new Event('input', { bubbles: true }));
+                        }
+                        
+                        if (mainNegPromptInput && current_neg_prompt && current_neg_prompt.trim()) {
+                            const existingNegPrompt = mainNegPromptInput.value || '';
+                            if (at_beginning) {
+                                mainNegPromptInput.value = current_neg_prompt + (existingNegPrompt ? ', ' + existingNegPrompt : '');
+                            } else {
+                                mainNegPromptInput.value = existingNegPrompt + (existingNegPrompt ? ', ' + current_neg_prompt : current_neg_prompt);
+                            }
+                            // 觸發 input 事件以確保 gradio 檢測到變化
+                            mainNegPromptInput.dispatchEvent(new Event('input', { bubbles: true }));
+                        }
+                        
+                        return [];
+                    }
+                    """
+                )
+                
                 gr.Markdown("### Create New Style (Requires Restart)")
                 
                 with FormRow():
@@ -185,79 +296,128 @@ class StyleSelectorXL(scripts.Script):
                             fn=lambda name, prompt, negative: (
                                 append_style_to_json(name, prompt, negative),
                                 "", "", ""
-                            )[1:],
+                            )[1:],  # Return only the empty strings
                             inputs=[new_style_name, new_style_prompt, new_style_negative],
                             outputs=[new_style_name, new_style_prompt, new_style_negative]
                         )
+                    with FormColumn(min_width=160):
+                        open_button = gr.Button(value="Open JSON File")
+                        open_button.click(
+                            fn=lambda: open_json_file(),
+                            inputs=[],
+                            outputs=[]
+                        )
 
-        return [is_enabled, randomize, append_style, json_file, style1, style2, style3, style4]
+        return [is_enabled, allstyles, style_at_beginning, use_current_prompt, prompt_preview, neg_prompt_preview, style1, style2, style3, style4]
 
-    def append_styles_to_prompt(self, style1, style2, style3, style4, append_style):
-        selected_styles = [s for s in [style1, style2, style3, style4] if s and s != "base"]
-        if not selected_styles:
-            return "", ""
 
-        positive_injection = []
-        negative_injection = []
-        for style in selected_styles:
-            style_positive = createPositive(style, "", append_style)
-            style_negative = createNegative(style, "")
-            if style_positive:
-                positive_injection.append(style_positive)
-            if style_negative:
-                negative_injection.append(style_negative)
-
-        positive_result = ", ".join(positive_injection).strip(", ")
-        negative_result = ", ".join(negative_injection).strip(", ")
-        return positive_result, negative_result
-
-    def process(self, p, is_enabled, randomize, append_style, json_file, style1, style2, style3, style4):
+    def process(self, p, is_enabled, allstyles, style_at_beginning, use_current_prompt, current_prompt_text, current_neg_prompt_text, style1, style2, style3, style4):
         if not is_enabled:
             return
 
-        # Update styles if JSON file changes
-        self.styleNames = getStyles(json_file)
-
         batchCount = len(p.all_prompts)
-        selected_styles = [s for s in [style1, style2, style3, style4] if s]
 
-        # Handle randomization
-        if randomize:
-            selected_styles = random.sample(self.styleNames, k=min(len(self.styleNames), 4))
-            if "random" in selected_styles:
-                selected_styles.remove("random")
+        # Gather selected styles
+        selected_styles = [s for s in [style1, style2, style3, style4] if s]
 
         # Generate style sets per prompt
         styles_per_prompt = {}
         for i in range(batchCount):
-            styles_per_prompt[i] = selected_styles
+            if allstyles:
+                # Cycle through all styles one at a time
+                # 過濾掉 "Random Select" 選項以獲得實際的樣式名稱
+                actual_styles = [s for s in self.styleNames if s != "Random Select"]
+                if actual_styles:
+                    styles_per_prompt[i] = [actual_styles[i % len(actual_styles)]]
+                    print(f"AllStyles mode - Image {i}: {styles_per_prompt[i]}")
+                else:
+                    styles_per_prompt[i] = selected_styles
+            else:
+                # Same selected styles for all prompts
+                styles_per_prompt[i] = selected_styles
+                print(f"Normal mode - Image {i}: {selected_styles}")
+        
+        print(f"Total batch count: {batchCount}")
+        print(f"Available style names count: {len(self.styleNames) if self.styleNames else 0}")
 
         # Inject positive prompts
         for i, original_prompt in enumerate(p.all_prompts):
             styles = styles_per_prompt[i]
-            injected_styles = [createPositive(s, original_prompt, append_style) for s in styles]
-            injection = ", ".join([s for s in injected_styles if s]).strip(", ")
-            p.all_prompts[i] = injection if injection else original_prompt
+            injected_styles = [createPositive(s, "") for s in styles if s]
+            injection_parts = []
+            
+            print(f"Processing prompt {i}: styles = {styles}")
+            print(f"Injected styles for prompt {i}: {injected_styles}")
+            
+            # Add style prompts
+            style_injection = ", ".join([s for s in injected_styles if s]).strip(", ")
+            if style_injection:
+                injection_parts.append(style_injection)
+            
+            # Add current prompt text if enabled
+            if use_current_prompt and current_prompt_text and current_prompt_text.strip():
+                injection_parts.append(current_prompt_text.strip())
+            
+            # Combine all injections
+            injection = ", ".join(injection_parts)
+            
+            if injection:
+                if style_at_beginning:
+                    p.all_prompts[i] = f"{injection}, {original_prompt}"
+                else:
+                    p.all_prompts[i] = f"{original_prompt}, {injection}"
+                print(f"Final prompt {i}: {p.all_prompts[i]}")
+            else:
+                p.all_prompts[i] = original_prompt
+                print(f"No injection for prompt {i}: {p.all_prompts[i]}")
 
         # Inject negative prompts
-        for i, original_negative in enumerate(p.all_negative_prompts):
+        for i, original_prompt in enumerate(p.all_negative_prompts):
             styles = styles_per_prompt[i]
-            injected_styles = [createNegative(s, original_negative) for s in styles]
-            injection = ", ".join([s for s in injected_styles if s]).strip(", ")
-            p.all_negative_prompts[i] = injection if injection else original_negative
+            injected_styles = [createNegative(s, "") for s in styles if s]
+            injection_parts = []
+            
+            print(f"Processing negative prompt {i}: styles = {styles}")
+            print(f"Injected negative styles for prompt {i}: {injected_styles}")
+            
+            # Add style prompts
+            style_injection = ", ".join([s for s in injected_styles if s]).strip(", ")
+            if style_injection:
+                injection_parts.append(style_injection)
+            
+            # Add current negative prompt text if enabled
+            if use_current_prompt and current_neg_prompt_text and current_neg_prompt_text.strip():
+                injection_parts.append(current_neg_prompt_text.strip())
+            
+            # Combine all injections
+            injection = ", ".join(injection_parts)
+            
+            if injection:
+                if style_at_beginning:
+                    p.all_negative_prompts[i] = f"{injection}, {original_prompt}"
+                else:
+                    p.all_negative_prompts[i] = f"{original_prompt}, {injection}"
+                print(f"Final negative prompt {i}: {p.all_negative_prompts[i]}")
+            else:
+                p.all_negative_prompts[i] = original_prompt
+                print(f"No negative injection for prompt {i}: {p.all_negative_prompts[i]}")
 
         # Metadata
         p.extra_generation_params.update({
             "Style Selector Enabled": True,
-            "Style Selector Randomize": randomize,
-            "Style Selector Append": append_style,
-            "Style Selector JSON File": json_file,
+            "Style Selector AllStyles": allstyles,
+            "Style Selector At Beginning": style_at_beginning,
+            "Style Selector Use Current Prompt": use_current_prompt,
             "Style Selector Styles Used": ", ".join(selected_styles)
         })
 
-def on_ui_settings():
-    section = ("styleselector_nsfw", "Style Selector (NSFW)")
-    shared.opts.add_option("enable_styleselector_by_default", shared.OptionInfo(
-        True, "Enable Style Selector by default", gr.Checkbox, section=section))
 
+
+def on_ui_settings():
+    section = ("styleselector", "Style Selector")
+    shared.opts.add_option("styles_ui", shared.OptionInfo(
+        "select-list", "How should Style Names Rendered on UI", gr.Radio, {"choices": ["radio-buttons", "select-list"]}, section=section))
+    
+    shared.opts.add_option("enable_styleselector_by_default", shared.OptionInfo(True, "Enable Style Selector by default", gr.Checkbox, section=section))
+    
 script_callbacks.on_ui_settings(on_ui_settings)
