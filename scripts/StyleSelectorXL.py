@@ -1,5 +1,4 @@
 import contextlib
-
 import gradio as gr
 from modules import scripts, shared, script_callbacks
 from modules.ui_components import FormRow, FormColumn, FormGroup, ToolButton
@@ -18,7 +17,7 @@ def get_json_content(file_path):
             return json_data
     except Exception as e:
         print(f"A Problem occurred: {str(e)}")
-
+        return None
 
 def read_sdxl_styles(json_data):
     if not isinstance(json_data, list):
@@ -27,18 +26,25 @@ def read_sdxl_styles(json_data):
     
     names = [item['name'] for item in json_data if isinstance(item, dict) and 'name' in item]
     names.sort()
+    names.insert(0, "random")  # Add "random" as the first option
     return names
 
-
-def getStyles():
+def getStyles(json_file):
     global stylespath
-    json_path = os.path.join(scripts.basedir(), 'nsfw_styles.json')
+    json_path = os.path.join(scripts.basedir(), json_file)
     stylespath = json_path
     json_data = get_json_content(json_path)
-    return read_sdxl_styles(json_data)
+    if json_data:
+        return read_sdxl_styles(json_data)
+    return ["base", "random"]
 
-
-def createPositive(style, positive):
+def createPositive(style, positive, append_style):
+    if style == "random":
+        json_data = get_json_content(stylespath)
+        if not json_data:
+            return positive
+        style = random.choice([item['name'] for item in json_data if isinstance(item, dict) and 'name' in item])
+    
     json_data = get_json_content(stylespath)
     try:
         if not isinstance(json_data, list):
@@ -46,14 +52,20 @@ def createPositive(style, positive):
 
         for template in json_data:
             if template.get('name') == style:
-                return template['prompt'].replace('{prompt}', positive)
-
-        raise ValueError(f"No template found with name '{style}'.")
+                style_prompt = template['prompt'].replace('{prompt}', positive)
+                return f"{style_prompt}, {positive}" if append_style else f"{positive}, {style_prompt}"
+        return positive
     except Exception as e:
         print(f"An error occurred: {str(e)}")
-
+        return positive
 
 def createNegative(style, negative):
+    if style == "random":
+        json_data = get_json_content(stylespath)
+        if not json_data:
+            return negative
+        style = random.choice([item['name'] for item in json_data if isinstance(item, dict) and 'name' in item])
+    
     json_data = get_json_content(stylespath)
     try:
         if not isinstance(json_data, list):
@@ -63,11 +75,10 @@ def createNegative(style, negative):
             if template.get('name') == style:
                 json_negative_prompt = template.get('negative_prompt', "")
                 return f"{json_negative_prompt}, {negative}" if json_negative_prompt and negative else json_negative_prompt or negative
-
-        raise ValueError(f"No template found with name '{style}'.")
+        return negative
     except Exception as e:
         print(f"An error occurred: {str(e)}")
-        
+        return negative
 
 def append_style_to_json(name, prompt, negative_prompt):
     global stylespath
@@ -97,15 +108,17 @@ def open_json_file():
     except Exception as e:
         print(f"Could not open file: {e}")
 
+def get_json_files():
+    extension_dir = scripts.basedir()
+    return [f for f in os.listdir(extension_dir) if f.endswith('.json')]
 
 class StyleSelectorXL(scripts.Script):
     def __init__(self) -> None:
         super().__init__()
-    
-    styleNames = getStyles()
+        self.styleNames = getStyles("sdxl_styles.json")  # Default JSON file
 
     def title(self):
-        return "Style Selector for SDXL 1.0"
+        return "Style Selector for SDXL 1.0 (NSFW)"
 
     def show(self, is_img2img):
         return scripts.AlwaysVisible
@@ -113,18 +126,23 @@ class StyleSelectorXL(scripts.Script):
     def ui(self, is_img2img):
         enabled = getattr(shared.opts, "enable_styleselector_by_default", True)
         with gr.Group():
-            with gr.Accordion("SDXL Styles", open=False):
+            with gr.Accordion("SDXL Styles (NSFW)", open=enabled):
                 with FormRow():
                     with FormColumn(min_width=160):
                         is_enabled = gr.Checkbox(value=enabled, label="Enable Style Selector")
                     with FormColumn(elem_id="Randomize Style"):
                         randomize = gr.Checkbox(value=False, label="Randomize Style")
-                    with FormColumn(elem_id="Randomize For Each Iteration"):
-                        randomizeEach = gr.Checkbox(value=False, label="Randomize For Each Iteration")
+                    with FormColumn(elem_id="Append Style"):
+                        append_style = gr.Checkbox(value=False, label="Place Style at End")
 
                 with FormRow():
                     with FormColumn(min_width=160):
-                        allstyles = gr.Checkbox(value=False, label="Generate All Styles In Order")
+                        json_file = gr.Dropdown(get_json_files(), value='sdxl_styles.json', label="Style JSON File")
+                        json_file.change(
+                            fn=lambda x: getStyles(x),
+                            inputs=[json_file],
+                            outputs=[style1, style2, style3, style4]
+                        )
 
                 with FormRow():
                     with FormColumn(min_width=160):
@@ -135,17 +153,23 @@ class StyleSelectorXL(scripts.Script):
                         style3 = gr.Dropdown(self.styleNames, value='base', multiselect=False, label="Style 3")
                     with FormColumn(min_width=160):
                         style4 = gr.Dropdown(self.styleNames, value='base', multiselect=False, label="Style 4")
-                
+
                 with FormRow():
                     with FormColumn(min_width=160):
-                        style5 = gr.Dropdown(self.styleNames, value='base', multiselect=False, label="Style 5")
+                        append_to_prompt = gr.Button(value="Append Styles to Prompt")
+                        append_to_prompt.click(
+                            fn=self.append_styles_to_prompt,
+                            inputs=[style1, style2, style3, style4, append_style],
+                            outputs=[gr.State(), gr.State()]  # Outputs to WebUI prompt and negative prompt
+                        )
                     with FormColumn(min_width=160):
-                        style6 = gr.Dropdown(self.styleNames, value='base', multiselect=False, label="Style 6")
-                    with FormColumn(min_width=160):
-                        style7 = gr.Dropdown(self.styleNames, value='base', multiselect=False, label="Style 7")
-                    with FormColumn(min_width=160):
-                        style8 = gr.Dropdown(self.styleNames, value='base', multiselect=False, label="Style 8")
-                
+                        open_button = gr.Button(value="Open JSON File")
+                        open_button.click(
+                            fn=lambda: open_json_file(),
+                            inputs=[],
+                            outputs=[]
+                        )
+
                 gr.Markdown("### Create New Style (Requires Restart)")
                 
                 with FormRow():
@@ -161,83 +185,79 @@ class StyleSelectorXL(scripts.Script):
                             fn=lambda name, prompt, negative: (
                                 append_style_to_json(name, prompt, negative),
                                 "", "", ""
-                            )[1:],  # Return only the empty strings
+                            )[1:],
                             inputs=[new_style_name, new_style_prompt, new_style_negative],
                             outputs=[new_style_name, new_style_prompt, new_style_negative]
                         )
-                    with FormColumn(min_width=160):
-                        open_button = gr.Button(value="Open JSON File")
-                        open_button.click(
-                            fn=lambda: open_json_file(),
-                            inputs=[],
-                            outputs=[]
-                        )
 
-        return [is_enabled, randomize, randomizeEach, allstyles, style1, style2, style3, style4, style5, style6, style7, style8]
+        return [is_enabled, randomize, append_style, json_file, style1, style2, style3, style4]
 
+    def append_styles_to_prompt(self, style1, style2, style3, style4, append_style):
+        selected_styles = [s for s in [style1, style2, style3, style4] if s and s != "base"]
+        if not selected_styles:
+            return "", ""
 
-    def process(self, p, is_enabled, randomize, randomizeEach, allstyles, style1, style2, style3, style4, style5, style6, style7, style8):
+        positive_injection = []
+        negative_injection = []
+        for style in selected_styles:
+            style_positive = createPositive(style, "", append_style)
+            style_negative = createNegative(style, "")
+            if style_positive:
+                positive_injection.append(style_positive)
+            if style_negative:
+                negative_injection.append(style_negative)
+
+        positive_result = ", ".join(positive_injection).strip(", ")
+        negative_result = ", ".join(negative_injection).strip(", ")
+        return positive_result, negative_result
+
+    def process(self, p, is_enabled, randomize, append_style, json_file, style1, style2, style3, style4):
         if not is_enabled:
             return
 
+        # Update styles if JSON file changes
+        self.styleNames = getStyles(json_file)
+
         batchCount = len(p.all_prompts)
+        selected_styles = [s for s in [style1, style2, style3, style4] if s]
 
-        # Gather selected styles
-        selected_styles = [s for s in [style1, style2, style3, style4, style5, style6, style7, style8] if s]
-
-        # Handle randomization modes
+        # Handle randomization
         if randomize:
-            selected_styles = random.sample(self.styleNames, k=min(3, len(self.styleNames)))
+            selected_styles = random.sample(self.styleNames, k=min(len(self.styleNames), 4))
+            if "random" in selected_styles:
+                selected_styles.remove("random")
 
         # Generate style sets per prompt
         styles_per_prompt = {}
         for i in range(batchCount):
-            if allstyles:
-                # Cycle through all styles one at a time
-                styles_per_prompt[i] = [self.styleNames[i % len(self.styleNames)]]
-            elif randomizeEach:
-                # Different styles for each prompt
-                styles_per_prompt[i] = random.sample(self.styleNames, k=min(3, len(self.styleNames)))
-            else:
-                # Same selected styles for all prompts
-                styles_per_prompt[i] = selected_styles
+            styles_per_prompt[i] = selected_styles
 
         # Inject positive prompts
         for i, original_prompt in enumerate(p.all_prompts):
             styles = styles_per_prompt[i]
-            injected_styles = [createPositive(s, "") for s in styles]
-            injection = ", ".join(injected_styles).strip(", ")
-            if injection:
-                p.all_prompts[i] = f"{original_prompt}, {injection}"
-            else:
-                p.all_prompts[i] = original_prompt
+            injected_styles = [createPositive(s, original_prompt, append_style) for s in styles]
+            injection = ", ".join([s for s in injected_styles if s]).strip(", ")
+            p.all_prompts[i] = injection if injection else original_prompt
 
         # Inject negative prompts
-        for i, original_prompt in enumerate(p.all_negative_prompts):
+        for i, original_negative in enumerate(p.all_negative_prompts):
             styles = styles_per_prompt[i]
-            injected_styles = [createNegative(s, "") for s in styles]
-            injection = ", ".join(injected_styles).strip(", ")
-            if injection:
-                p.all_negative_prompts[i] = f"{original_prompt}, {injection}"
-            else:
-                p.all_negative_prompts[i] = original_prompt
+            injected_styles = [createNegative(s, original_negative) for s in styles]
+            injection = ", ".join([s for s in injected_styles if s]).strip(", ")
+            p.all_negative_prompts[i] = injection if injection else original_negative
 
         # Metadata
         p.extra_generation_params.update({
             "Style Selector Enabled": True,
             "Style Selector Randomize": randomize,
-            "Style Selector RandomizeEach": randomizeEach,
-            "Style Selector AllStyles": allstyles,
+            "Style Selector Append": append_style,
+            "Style Selector JSON File": json_file,
             "Style Selector Styles Used": ", ".join(selected_styles)
         })
 
-
-
 def on_ui_settings():
-    section = ("styleselector", "Style Selector")
-    shared.opts.add_option("styles_ui", shared.OptionInfo(
-        "select-list", "How should Style Names Rendered on UI", gr.Radio, {"choices": ["radio-buttons", "select-list"]}, section=section))
-    
-    shared.opts.add_option("enable_styleselector_by_default", shared.OptionInfo(True, "Enable Style Selector by default", gr.Checkbox, section=section))
-    
+    section = ("styleselector_nsfw", "Style Selector (NSFW)")
+    shared.opts.add_option("enable_styleselector_by_default", shared.OptionInfo(
+        True, "Enable Style Selector by default", gr.Checkbox, section=section))
+
 script_callbacks.on_ui_settings(on_ui_settings)
