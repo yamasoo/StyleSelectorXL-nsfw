@@ -103,6 +103,37 @@ def append_style_to_json(name, prompt, negative_prompt):
     except Exception as e:
         print(f"Error saving style: {e}")
 
+def process_uploaded_json(file_obj):
+    """處理上傳的JSON檔案"""
+    global stylespath
+    
+    if file_obj is None:
+        return None, None, "No file uploaded"
+    
+    try:
+        # 讀取上傳的檔案內容
+        if hasattr(file_obj, 'name'):
+            file_path = file_obj.name
+        else:
+            file_path = str(file_obj)
+            
+        # 更新全域路徑
+        stylespath = file_path
+        
+        # 載入JSON內容
+        json_data = get_json_content(file_path)
+        if json_data:
+            new_styles = read_sdxl_styles(json_data)
+            filename = os.path.basename(file_path)
+            return new_styles, filename, f"Successfully loaded: {filename}"
+        else:
+            return None, None, f"Failed to parse JSON file: {os.path.basename(file_path)}"
+            
+    except Exception as e:
+        print(f"Error processing uploaded file: {e}")
+        return None, None, f"Error processing file: {str(e)}"
+
+
 def open_json_file():
     global stylespath
     try:
@@ -114,6 +145,32 @@ def open_json_file():
             subprocess.call(["xdg-open", stylespath])
     except Exception as e:
         print(f"Could not open file: {e}")
+
+
+def update_styles_from_uploaded_file(file_obj):
+    """從上傳的檔案更新樣式列表"""
+    new_styles, filename, status = process_uploaded_json(file_obj)
+    
+    if new_styles:
+        # 返回更新的下拉選單選項和狀態
+        return (
+            gr.Dropdown.update(choices=new_styles, value='base'),
+            gr.Dropdown.update(choices=new_styles, value='base'),
+            gr.Dropdown.update(choices=new_styles, value='base'),
+            gr.Dropdown.update(choices=new_styles, value='base'),
+            filename or "Unknown file",
+            status
+        )
+    else:
+        # 如果載入失敗，保持原狀
+        return (
+            gr.update(),
+            gr.update(), 
+            gr.update(),
+            gr.update(),
+            gr.update(),
+            status or "File upload failed"
+        )
 
 
 def copy_styles_to_prompt_func(current_prompt, current_neg_prompt, style1, style2, style3, style4):
@@ -209,6 +266,23 @@ class StyleSelectorXL(scripts.Script):
                     with FormColumn(min_width=160):
                         style4 = gr.Dropdown(self.styleNames, value='base', multiselect=False, label="Style 4")
 
+                # JSON file selection section
+                gr.Markdown("### Style File Management")
+                with FormRow():
+                    with FormColumn(min_width=300):
+                        json_file_upload = gr.File(
+                            label="Upload JSON Style File", 
+                            file_types=[".json"],
+                            file_count="single"
+                        )
+                    with FormColumn(min_width=200):
+                        open_button = gr.Button(value="Open Current JSON File", variant="secondary")
+                    with FormColumn():
+                        file_status = gr.Textbox(label="Current File", value="nsfw_styles.json", interactive=False)
+                        
+                with FormRow():
+                    upload_status = gr.Textbox(label="Upload Status", lines=1, interactive=False)
+
                 # Copy styles section
                 gr.Markdown("### Copy Styles to Prompt")
                 with FormRow():
@@ -228,6 +302,20 @@ class StyleSelectorXL(scripts.Script):
                 # Status display for add to main prompt
                 with FormRow():
                     status_display = gr.Textbox(label="Status", lines=3, interactive=False)
+                        
+                # Set up JSON file upload functionality
+                json_file_upload.change(
+                    fn=update_styles_from_uploaded_file,
+                    inputs=[json_file_upload],
+                    outputs=[style1, style2, style3, style4, file_status, upload_status]
+                )
+                
+                # Set up open JSON file functionality
+                open_button.click(
+                    fn=lambda: open_json_file(),
+                    inputs=[],
+                    outputs=[]
+                )
                         
                 # Set up the copy button functionality
                 copy_styles_button.click(
@@ -281,37 +369,10 @@ class StyleSelectorXL(scripts.Script):
                     """
                 )
                 
-                gr.Markdown("### Create New Style (Requires Restart)")
-                
-                with FormRow():
-                    with FormColumn():
-                        new_style_name = gr.Textbox(label="New Style Name:")
-                        new_style_prompt = gr.Textbox(label="Positive Prompt:")
-                        new_style_negative = gr.Textbox(label="Negative Prompt:")
-                        
-                with FormRow():
-                    with FormColumn(min_width=160):
-                        save_button = gr.Button(value="Save New Style")
-                        save_button.click(
-                            fn=lambda name, prompt, negative: (
-                                append_style_to_json(name, prompt, negative),
-                                "", "", ""
-                            )[1:],  # Return only the empty strings
-                            inputs=[new_style_name, new_style_prompt, new_style_negative],
-                            outputs=[new_style_name, new_style_prompt, new_style_negative]
-                        )
-                    with FormColumn(min_width=160):
-                        open_button = gr.Button(value="Open JSON File")
-                        open_button.click(
-                            fn=lambda: open_json_file(),
-                            inputs=[],
-                            outputs=[]
-                        )
-
-        return [is_enabled, allstyles, style_at_beginning, use_current_prompt, prompt_preview, neg_prompt_preview, style1, style2, style3, style4]
+        return [is_enabled, allstyles, style_at_beginning, use_current_prompt, prompt_preview, neg_prompt_preview, style1, style2, style3, style4, file_status, upload_status]
 
 
-    def process(self, p, is_enabled, allstyles, style_at_beginning, use_current_prompt, current_prompt_text, current_neg_prompt_text, style1, style2, style3, style4):
+    def process(self, p, is_enabled, allstyles, style_at_beginning, use_current_prompt, current_prompt_text, current_neg_prompt_text, style1, style2, style3, style4, file_status, upload_status):
         if not is_enabled:
             return
 
