@@ -1,667 +1,1242 @@
 [
-  {
-    "name": "base",
-    "prompt": "{prompt}",
-    "negative_prompt": ""
-  },
-  {
-    "name": "女体盛り/nyotaimori",
-    "prompt": " ( nyotaimori:1.3), food on body,lying on table,sushi, maguro,  {1-4$$ nori , makizushi, shrimp tempura,}  { indoors. tatami, japanese aesthetic, | simple background,| gradient background,  }{prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "砧/upside-down sex",
-    "prompt": "  upside-down, sex, 1girl, 1boy, penis, vaginal, spread legs,lying,,ass, {indoors,  {couch | bed} | { outdoors,{ beach| public use,| public nudity,  } } } , cum in pussy, trembling,{ rolling eyes,| fucked silly, |closed eyes saliva drip, |ahegao,| naughty face, |smile, |tongue out,    } {grabbing ass, |leg grab,|stomach bulge,   },{prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "ロープ渡/rope walking",
-    "prompt": " rope walking,1girl,bound,bdsm,bondage,pussy juice,rope,crotch rub, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "産卵/egg layingegg",
-    "prompt": "  laying,egg,pregnant,nude,{tentacles,|  } ahegao,pussy juice trail, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "まんぐり返し/folded pose",
-    "prompt": "   1girl, lying, legs up, { thigh grab,|ass grab,} { completely nude, | ,} { spread legs, spread pussy, | spread pussy pinned,   |, }{ sex, hetero, 1boy, cum | , }  { pussy juice, | sweat, |  } , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "クロッチずらし/panties aside",
-    "prompt": "    clothing aside, pussy, panties,grabbing panties,simple background,spread pussy, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "フェラチオとオナニー/ fellatio and masturbation",
-    "prompt": "   fellatio and masturbation, fellatio, female masturbation,fingering,pussy,1boy,squatting, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "ポールダンス/pole dancing",
-    "prompt": "  stripper pole,pole dancing,stripper, { bikini,| topless, | bottomless, | completely nude, |revealing clothes, | reverse bunnysuit, | playboy bunny, |||||   }  ,{ | ,| squatting,|upside-down, }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "マン汁/pussy juice",
-    "prompt": " pussy juice,pussy,{1-3$$ pussy juice trail,| excessive pussy juice,|  pussy juice stain,|  pussy juice puddle, }  , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "乳首責め/nipple pull",
-    "prompt": " ,nipple pull,nipple tweak, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "だいしゅきホールド/legs lock",
-    "prompt": "   leg lock, sex, 1girl, 1boy,hug,lying,on bed,face on breasts,{ from behind, | from side,| from above,| dutch angle,| | | | | | }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "乳もみ/grabbing breasts",
-    "prompt": "    { grabbing breasts,1boy,  | grabbing from behind,1boy, | 1girl,  grabbing own breast,  } , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "裂けた服/torn clothes",
-    "prompt": "   ( torn clothes:1.3), nipples,pussy, torn  {pantyhose,| panties,| bikini, | short shorts, | pantyhose,| pantyhose, | pantyhose, | pantyhose, | bodysuit, | swimsuit,| school uniform,  }   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "機械姦/sex machine",
-    "prompt": " sex machine, restrained, bound, bdsm, stationary restraints,  {1-4$$ milking machine,| head-mounted display,| wooden horse,  } {1-6$$ tube,| cable,|blindfold,|object insertion,| sex toy,| mind control,| corruption,| gagged,| }machine,forced orgasm, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "フェラチオ(複数)/cooperative fellatio",
-    "prompt": "  1boy, hetero, penis, oral, fellatio, group sex, cooperative fellatio,{4girls| 2girls, | 3girls,}  , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "子宮口/cervix",
-    "prompt": "  ,ultra- spread pussy, cervix , cervix prolapse,{anus|pussy juice, | cumdrip,  }  { uncensored, | censored, | endoscopy view }  {simple background,|  indoors} , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "駅弁/suspended congress",
-    "prompt": "  ekiben,suspended congress,1girl,1boy,sex,vaginal, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "遮住重要部位/covering privates",
-    "prompt": "   covering privates,covering breasts,covering crotch,{standing|sitting|lying}, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "顔面騎乗位/Face Sitting",
-    "prompt": "  sitting on face,1boy,1girl,girl on top, {1-2$$  |skirt,|panties,|bare foot,| topless, |bottomless, |completely nude, | swimsuit,|thighhighs,   }{ squatting, |sitting, | kneeling, |spread legs, | wariza, | }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "押し車/Wheelbarrow position",
-    "prompt": "  wheelbarrow position, arm support, push-ups, sex from behind,{ upside-down,| jack-o' challenge,}  1girl, 1boy,torso grab, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "セルフ挿入/guided penetration",
-    "prompt": " (holding penis:1.3), guided penetration, 1girl, 1boy, hetero, penis, sex, vaginal, girl on top, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "潮吹き/ female ejaculation",
-    "prompt": "   female ejaculation,pussy,spread legs  , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "縛り/shibari",
-    "prompt": " japanese aesthetic, shibari,bound,{ hemp brown rope,| red rope,  }, bdsm,bound torso,  {1-6$$ crotch rope,| arms behind back | bound wrists, |bound arms, |bound legs,|bound ankles, | bound thighs,  | bound knees,| bound_breasts,   }  { completely nude, | shibari over clothes, | shibari under clothes, |, |, |, |  }  , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "ハーネス縛り/harness",
-    "prompt": "  harness,bdsm,bondage,o-ring,bound, belt ,bound torso,  {1-6$$ crotch harness,| arms behind back | bound wrists, |bound arms, |bound legs,|bound ankles, | bound thighs,  | bound knees,| bound_breasts,   }  { completely nude, | belt over clothes, | belt under clothes,  |choker,  collar, |spiked collar,  | animal collar, |pet play,  |, |  }  , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "乱交/group sex",
-    "prompt": " group sex,{ {multiple boys,| 1boy, | 2boys, | 3boys, |4boys, | 6+boys,   } { 1girl,| 2girls,| 3girls,| 4girls,|  multiple girls,|6+girls,  }| 1girl, 3boys,  }  hetero, sex, orgy ,gangbang, gangbang rape, forced gangbang , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "仕込みローター/ vibrator under clothes",
-    "prompt": " vibrator under clothes, {egg vibrator| remote control vibrator, | hitachi magic wand, |implied vibrator,  },pussy juice, {vibrator cord,| vibrator in thighhighs, }  {1-4$$ fucked silly,| ahegao, | trembling, | sound effects, | heavy breathing,  }  , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "百合双頭ディルド/ yuri,double dildo",
-    "prompt": " yuri,double dildo,{prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "足コキ/footjob",
-    "prompt": "  footjob,1girl,1boy, {penis, | large penis, |huge penis, |gigantic penis, |penis,  }  ,{ barefoot,  toes, | socks, | boots, |high heels, barefoot,  toes, | barefoot,  toes, | barefoot,  toes, |  }   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "胸ちら/nipple slip",
-    "prompt": "   leaning forward, loose clothes,munechira, breasts, downblouse,  cleavage,nipple slip,  { pink nipples, | nipples,| nipple piercing, |puffy nipples, | areola slip, |strap slip, |breast slip, |inverted nipples, |nipple ring }   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "腹ぼこ/extrem insertion",
-    "prompt": "    extrem insertion,stomach bulge,vaginal ,{cum,|pussy juice,|bleeding,   }, { happy, |sad, |ahegao, |rolling eyes, |fucked silly, }  {  large penis, |huge penis, |gigantic penis, | huge dildo,   }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "雌犬ポーズ/paw pose",
-    "prompt": "  paw pose,squatting,spread legs, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "マンコ拡張/Speculum",
-    "prompt": "  {1-2$$ speculum | dilation tape },  pussy spreader,spread pussy,bdsm, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "二穴責め/double insertions",
-    "prompt": "  {dildo,|dildo and  {anal ball,anal beads| anal tail| butt plug }} , double insertion,anal,vaginal,{ completely nude,  nude,| panties aside, | bottomless,   },1girl,object insertion  , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "スライム姦/slime sex",
-    "prompt": "  slime sex,slime , slime  , vaginal, restrained,  { fellatio,| anal insertion,  | tentacle sex,  } transparent slime, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "ペットプレイ/pet play",
-    "prompt": "  bdsm,pet play,chain , choker, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "食い込み/Wedgie",
-    "prompt": "     wedgie,  partially visible vulva, {bikini| panties, | panties, | panties, | panties, | panties, | panties,  } pull,   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "胸ちら(後ろから)/breasts view from behind",
-    "prompt": "  breasts view from behind,from behind,breasts,bare neck,cleavage,  1girl,from above,kimono,solo, look back , clothes slip , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "マンスジ/cameltoe",
-    "prompt": "   cameltoe,1girl,{ ass,thick thighs,  | groin,  }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "乳もみ(服の下)/grabbing breasts under clothes",
-    "prompt": "    hand under clothes,grabbing another's breast,1girl,1boy,grabbing from behind,loose clothes, stomach,underboob, {clothes lift, {crop top| shitr| tanktop | top } | { leotard, | bodysuit, | bra | swimsuit, | bikini,   } }  }   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "素股/grinding",
-    "prompt": " grinding,1girl,penis,girl on top { leaking,  suggestive fluid,  | ,   }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "スカートの中に手を入れる/hand under skirt",
-    "prompt": "  hand under skirt,skirt,groping,1girl,1boy,shirt , stomach, groin, public hair, loose skirt , button_off   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "玉舐め/testicle sucking",
-    "prompt": "  (testicle sucking:1.3) ,   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "多重マンコ/ multiple pussy",
-    "prompt": "  multiple pussy, { 3girls,| 4girls,|  multiple girls,|6+girls,  },from below, thick thighs, bottomless, { 1-3$$ pussy_hair,| pussy juice, anus,| cumdrip,  },  looking down, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "逆海老吊り/Shrimp tie ",
-    "prompt": "  from below,  shibari, bound, bdsm, bondage, suspension,rope,arms behind back, bound ankles, bound torso, on stomach,  nipples,  indoors, japanese aesthetic, stomach,navel,   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "ローションプレイ/lotion play",
-    "prompt": "  (transparent liquid:1.5),  lotion play, lotion,oiled, air mattress,    bathroom,   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "ずり上げブラ/bra lift",
-    "prompt": "  bra lift   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "脱ぎかけ/clothes pull",
-    "prompt": "  clothes pull, undressing, partially undressed,clothes lift, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "中出し/after sex",
-    "prompt": "  cumdrip,after sex,cum,pussy,spread pussy,cum pool,   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "パンティー引き/ panty pull",
-    "prompt": "  panty pull,  { 1boy pulling another's clothes| 1girl, pull_own_panties }  ,panties,panty pull,1girl, grabbing  , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "挿入前/ imminent penetration",
-    "prompt": "  1girl,  imminent penetration, penis, 1boy, erection,spread legs  , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "電マ/hitachi magic wand",
-    "prompt": "  hitachi magic wand,,1girl,spread legs, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "大の字/sprawled",
-    "prompt": "  sprawled, arms up, spread arms, spread legs,  bound, bdsm,bondage,restrained, { rope, | chain}  bound wrists, bound ankle, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "松葉崩し/Pine Needle Break",
-    "prompt": "   1girl,1boy,leg lift,leg up,matsubakuzushi,sex,vaginal,  hetero,  insertion, leg grab, knee grab  , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "仰け反り/arched back orgasms",
-    "prompt": " arched back orgasms, 1girl, 1boy, sex, head back, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "車内フェラ/car fellatio",
-    "prompt": "  car fellatio,1girl,1boy,penis,oral,fellatio,motor vehicle,car interior,from side, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "片足パンティー引き/ panty pull(standing on the one leg)",
-    "prompt": " holding panties,standing on one leg,panties around one leg,undressing ,from side,bent over , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "隠姦(ドア)/stealth sex(door)",
-    "prompt": "  stealth sex, pov doorway,half opening door,1girl,1boy,netorare,sex from behind, hand_on_hip, blush,  {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "バックセックス/sex from behind",
-    "prompt": "   sex from behind,1girl,1boy, { all fours, | top-down bottom-up, | standing sex, }  holding another's {hand,| wrist,|hips } , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "寝バック/on bed sex from behind",
-    "prompt": "  on stomach,1girl,sex,1boy,sex from behind,bed {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "アナル舐め/anilingus",
-    "prompt": "  anilingus,  ,licking anal,tongue out,1girl,1boy ,testicles, grab_hips, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "まさぐる/groping",
-    "prompt": "  groping, groping motion, train interior,  {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "電車痴漢/chikan groping",
-    "prompt": "  groping, groping motion, train interior, chikan ,grabbing another's {1-4$$ breast, | pussy| ass, | waist.  } , {office lady | milf,| school uniform, jk|  }  {1-4$$ bottomless, | topless| top_lift| skirt lift, | panty pull, | bra_aside| panties_aside| panties around one leg,  } ,  {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "乳寄せ/breasts squeeze",
-    "prompt": "   breasts own squeeze, cleavage,  breasts focus,  {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "６９/ 69",
-    "prompt": " arched back, 69, 1girl, 1boy, oral, fellatio, penis ,hands on  thighs, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "前屈み/bent",
-    "prompt": "  bent over,leaning forward, {hand on hip| } { cleavage, |  }{prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "アナルビーズ/anal beads",
-    "prompt": "  anal beads,sex toy,anal object insertion, spread ass, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "種付けプレス/mating press",
-    "prompt": "   mating press,1girl,sex,1boy,{1-5$$ sound effect,| montion line,| moaning| trembling, |speed lines,  },cum,cum overflow, cum pool, nude male, uncensored, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "浣腸/enema",
-    "prompt": "   (enema:1.4), object insertion, anal , large syringe,  graduated scale ,holding syringe, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "ちんぐり返し/Amazon Position",
-    "prompt": "  chinguri,sex,1girl,1boy,penis,Amazon Position, amazon position,  squatting,grin,holding another's foot, pumping{prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "陰部特寫/bottom focus",
-    "prompt": "   ( huge clitoris,  erect clitoris:1.3) leg up,pussy juice,from below, labia, anal, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "劈腿/ standing split",
-    "prompt": "  standing split, standing,hand hold feet, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "拳交/ fisting",
-    "prompt": " ({ fisting,anus | anal fisting, pussy}:1.3) ass focus,bottomless,  1girl, hetero, 1boy,  spread anus, spread own ass, from behind,suspended { fingerless gloves, | partially fingerless gloves, |see-through gloves | , | , | , | , | , | , }  { fucked silly, |ahegao, rolling eyes, | closed eyes, | | |  }   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "肉便器/public use",
-    "prompt": "  nikubenki,body writing, public use, bdsm,bondage, spread legs, spread pussy, legs_up, tally,toilet, bound ankles, suspended,  bottomless ,anus|  {1-4$$ cum in pussy, |cum in ass, | dildo,  |pussy juice, | cumdrip,|dilation tape |peeing,  } uncensored,   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "土下座/dogeza",
-    "prompt": "   dogeza, sitting, completely nude, { folded clothes,|dildo,| vibrator, | hitachi magic wand,  } , {tatami, | wooden floor},japanes aesthetic,  ,bdsm,dimples of venus,  top-down bottom-up,   , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "ガラス押し付け/against glass",
-    "prompt": "  against glass , fog , reflection,  exhale ,  hands against glass,   {bra| tanktop | topless, nipples pressed, spread nipple,  }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "揺れるおっぱい/bouncing breasts",
-    "prompt": " bouncing breasts,breasts,motion lines, }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "行列/ procession",
-    "prompt": "   procession, {multiple boys,| 2boys, mmf threesome, | 3boys,  } group sex,,  1girl, fellatio, standing, full body, from side,sex from behind, back on wall, all the way through, double penetration, triple penetration, motion lines, sound effects, trembling leg, hanging breasts, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "壁ディルド/wall dildo",
-    "prompt": "  (wall dildo,dildo,dildo on wall,:1.3) from side,vaginal,sex toy,all fours ,against wall, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "ごっくん/cum in mouth",
-    "prompt": "  cum in mouth, tongue,cupping hands, open mouth, cum pool,  cum dripping,   {penis, | multiple penis |erection, | huge penis, ||||  } {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "フィンガリング/fingering",
-    "prompt": " { fingering,| anal fingering,}   ,  {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "臭いオナニー/smelling masturbation",
-    "prompt": "   smelling masturbation,female masturbation,smelling {clothes| underwear, } ,1girl,smelling,fingering, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "断面図/cross-section",
-    "prompt": " 1girl cross-section, danmen, sex, vaginal, 1boy, cum in pussy, cum_In_uterus, internal cumshot, uncensored, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "背面座位/reverse cowgirl position",
-    "prompt": "   reverse cowgirl position,1boy,girl on top,1girl,sex,vaginal,spread legs , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "事後精液を拭う/after sex",
-    "prompt": " cum wiping, cum wiping, holding tissue , cum_driping, after sex, after vaginal,  uncensored, used tissue, tissue box, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "アナル拡張/anal dilation",
-    "prompt": "  spread anal,  anal fluid, ass focus, oil, sweat, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "尻コキ/buttjob",
-    "prompt": "  buttjob,ass,penis,1boy ,1girl, from behind,  {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "立ちバック/standing sex from behind",
-    "prompt": " standing,sex from behind,1girl,1boy{prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "三角木馬/Triangular Wooden Horse",
-    "prompt": "  triangular wooden horse,riding,bdsm,bound,{prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "乳合わせ/ against_breasts",
-    "prompt": "  against_breasts,  2girls,yuri, from side, hug,{prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "深喉/irrumatio deepthroat",
-    "prompt": "  irrumatio, deepthroat, suprise deepthroat,imminent irrumatio, hand on head,forced blowjob,{1-4$$ vomiting,| saliva drip,| rolling eyes,| ahegao,| motion lines,| nasal hair  }  {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "尻たたき/spanking ass",
-    "prompt": " spanking ass, from behind, ass focus,spanked,hand on hip,ass blush ,sound effects, motion lines, trembling,  {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "スパイダー騎乗位/cowgirl position",
-    "prompt": " cowgirl position, nipple stimulation, 1girl, 1boy, girl on top, pov,  female_lead, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "バックセックス、ローアングル/ Sex from behind low angle",
-    "prompt": " from below , sex from behind, 1girl, 1boy, hetero,standing sex {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "クスコ/speculum",
-    "prompt": " speculum, pussy,cervix {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "栄光の壁/glory wall",
-    "prompt": "  glory wall, ass, from behind ,picture frame, through wall,  text on wall,1girl, solo,{school uniform | armor, | suit| swimsuit, | __female_style_combinations/casual__ ,  } , { {  short shorts, |denim shorts,  | panties,| bikini bottoms,| thighhighs,| torn clothes,  } | {1-7$$ pubic hair, |bottomless, pussy, | cum in pussy,  |  pussy juice, | cumdrip, | cum on ass, | defloration,bleeding, | amputee, |  body writing, | body markings,| thighhighs,  } }, {1-7$$ | sex toys,| paddle, |riding crop,| cane,   |anal beads, anal plug | price tag, |price list,| weapon | cum can | id card, | dildo, |huge dildo,| folded clothes,| tissue box, |used tissue, | used condom, |condom box, | condom belt,| barcode,|qr code, |tattoo, }, id photo , graffiti on wall, degrading remarks on wall, text ,name tag, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "貝合わせ/tribadism",
-    "prompt": "  kaiawase,tribadism,yuri,moaning, pussy juice trail,spread legs, {from side, | from above} indoors,on bed, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "騎乗フェラ/ riding fellatio",
-    "prompt": "  1girl ,  ( fellatio,blow_job, head_back:1.2) ,view between legs, 1boy lower body, implied fellatio,uncensored, { squatting, | standing, }  {1-4$$ cumdrip| saliva drip,| pussy juice, | grabbing another's ass, | grabbing another's legs,| huge penis, veiny penis,} {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "乳首コンドーム/nipples condom",
-    "prompt": "  nipples condom, condom belt,  nipple piercing, used condom,  , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "角オナ/ table humping",
-    "prompt": " table humping,table, crotch rub, { bottomless, public hair, spread pussy | skirt lift, panties, |bikini}  { pussy juice, | covering crotch,| pussy peek, | cumdrip, }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "女体盛りクリーム/cream decoration",
-    "prompt": " nyotaimori, whipped cream,decoration,strawberry, { lying_on_table |sitting,| standing, spread legs,  }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "逆さ吊り/upside down",
-    "prompt": " upside-down,bdsm,rope,arms behind back ,japanese aesthetic, indoors, , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "処女喪失/defloration",
-    "prompt": " defloration,bleeding, pussy pussy juice, penis insertion, cum ,  {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "首枷/pillory",
-    "prompt": " pillory,bdsm,bound,japanese aesthetic, indoors, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "獅子舞い/Tightly Closed Lids",
-    "prompt": " shishimai, legs up,both legs on another's shoulder,1girl lying on table,  1boy standing, sex, hetero, hugging, vaginal, , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "添い寝/lying on side",
-    "prompt": " 1girl,lying,on bed,pillow,bed sheet,on side,breasts, from side, dutch angle, looking at viewer, sheet { pajamas,| completely nude, } cleavage, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "踏みちん/footjob with high heels",
-    "prompt": " footjob, 1boy, penis,clothed female nude male,erection, veiny penis,  , evil smile,{1-2$$ high heels,|  thighhighs,} , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "ボトル挿入/ alcohol bottle insertion",
-    "prompt": " { whiskey, |sake | wine} bottle,drunk  ,alcohol insertion, alcohol, anal, anal object insertion, bottomless, , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "丸呑み/vore",
-    "prompt": " vore,  no head , tentacles, restrained,fro, below,trembling legs, leg focus,peeing, pussy juice, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "性器ピアス/Genital piercing",
-    "prompt": " pussy piercing, clitoris piercing, pussy, spread puusy, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "搾乳/milking",
-    "prompt": " milking, milking machine, lactation, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "行列(女性)/girls standing in a row",
-    "prompt": " girls standing in a row, { 5girls,|4girls,| 6+girls, | multiple girls,  }   1boy,penis,sex,wide shot,full body, sex from behind, against wall, motion lines, gangbang, group sex, indoors,  {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "髪コキ/hairjob",
-    "prompt": " hairjob,penis,1girl, 1boy,, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "電気責め/electric torture",
-    "prompt": " nipple clamps , electric torture, electricity,electric clamps,lightning,   nipples, bound, {1-4$$ clitoris clamp,| tongue clamp, |labia clamps, } bdsm,bondage,trembling,{pussy juice,  peeing,} { ahegao,|  angry,vein}  {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "尻相撲/ass sumo wrestling",
-    "prompt": " sumo, ass, ass to ass , 2girls,full body,bent over, leaning forward, hands_on_own_legs, { swimsuit|, bikini,| bottomless,| completely nude, }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "膝裏コキ/knee job",
-    "prompt": " 1girl, knee job, penis between back of the knee, penis,1boy, , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "ブリッジ/arched back",
-    "prompt": " 1girl, (arched back:1.2),(from side, tiptoes:1.3){fellatio|sex, insertion,}{on stomach, | } { hands touch  ground| grabbing another},  ,{1boy | mmf} threesome,  standing, hetero, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "ちんこ目隠し/penis over eyes",
-    "prompt": " (penis over eyes:1.3),  1boy,1girl,  penis, erection,covered eyes, tongue out, saliva trail, blush, veiny penis, bottomless, , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "舌入れクンニ/tongue insertion cunnilingus",
-    "prompt": " tongue insertion, cunnilingus, tongue out, tongue insertion cunnilingus, oral, 1boy,  hetero, pussy juice, anus, , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "開脚吊し上げ/leg-hanging",
-    "prompt": " shibari, spread legs, bound, bdsm, bondage, rope, arms behind back, frogtie,rope from ceiling, vertical rope, bound legs, bound arms, { completely nude, | underwear, | topless, | bottomless,  }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "踏みつけ/stomp head",
-    "prompt": " foot stomping on  head , stomping, 1boy standing, from below, , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "立ち松葉/waist-hanging position",
-    "prompt": " upside-down,legs up,   1boy, 1girl, sex, hetero,  lying, standing,penis, spread legs,leg lift,grabbing legs,arms behind back, {pussy peek,| cum in pussy,|pussy juice, }, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "習字/vagina calligraphy",
-    "prompt": " bottomless, vagina calligraphy, calligraphy brush, object insertion, spread legs,squatting, , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "立ち６９/standing 69",
-    "prompt": " standing 69, 69, nude,1boy,1girl,fellatio, cunnilingus,upside-down,hug, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "多重插入/multiple",
-    "prompt": " multip penetrations, 1girl, multiple boys, penis, sex, group sex, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "だるま/quadruple amputee",
-    "prompt": " (quadruple amputee:1.2) ,  1girl, bdsm, bound, bondage,  {rope,| chain,| belt, }  bound torso, {hanging, |lying, } { completely nude, | bodysuit, | bikini|  } ,{1-4$$ sex oy,| ahegao,| pussy juice,| cum in pussy,| cumdrip,| tattoo, | rolling eyes, | peeing,   }{prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "多物挿入/multiple insertion",
-    "prompt": "  multiple insertion, sex toy, vaginal object insertion, anal object insertion,{ 3-4$$ anal beads|, anal plug,| dildo|, huge dildo,| cum in pussy, |penis,|tentacles,   }, spread legs , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "足舐め(つま先)/licking toes",
-    "prompt": " licking toes, barefoot, 1girl, 1boy , from above, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "くすぐり/ tickling",
-    "prompt": " tickling, tickle torture, laughing,{1-3$$  feathers, gloves, fingers} {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "鹿倒立/plantar flexion",
-    "prompt": " plantar flexion, upside-down, handstand, from side,one_leg_folded, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "わかめ酒/wakamezake",
-    "prompt": " wakamezake,  seiza,  sake, pubic hair,sake pool on pussy, closed legs, aqua  transparent  liquid,  from above, tatami,wooden floor, opened kimono, bottomless, pee pool, , {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "布団潜り込み/under covers",
-    "prompt": " under covers, {prompt}, ",
-    "negative_prompt": ""
-  },
-  {
-    "name": "IDカード/ID carf ",
-    "prompt": " id card covered pussy,completely nude, covering crotch,  {prompt}, ",
-    "negative_prompt": ""
-  }
+    {
+        "name": "base",
+        "prompt": "{prompt}",
+        "negative_prompt": "",
+        "category": "base",
+        "namezh": "",
+        "namejp": ""
+    },
+    {
+        "name": "整列前かがみ/lineup, bent over",
+        "prompt": " line_up,lineup, bent over, spread pussy, ass-to-ass, {2girls,| 3girls,| 4girls, },   outdoors, waiting for penis,",
+        "negative_prompt": "",
+        "category": "base",
+        "namezh": "排成一行等操",
+        "namejp": "整列,前かがみ"
+    },
+    {
+        "name": " ペニスの裏の顔/face behinde penis",
+        "prompt": " 1boy, 1girl, hetero, spread legs, pussy, penis, anus, sex from behind, face behinde penis,  from behind, __color__ eyes,uncensored,, {cum in pussy, |cumdrip, |peeing, |pussy juice, |cum overflow, |cum pool,} very wide shot, very wide shot, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "臉在陰莖後面",
+        "namejp": "ペニスの裏の顔"
+    },
+    {
+        "name": "吊し女/hanged female",
+        "prompt": "hanged female, imminent death ,female death ,execution , outdoors, day, head back,  , noose hanged  neck, cyanosis , death_piss, asphyxiation,dead, , nude,rolling eyes, tongue out, pussy, cumdrip, pussy juice, strangling,arms behind back, bdsm, legs_in_air, trembling legs, stepping ",
+        "negative_prompt": "",
+        "category": "GURO",
+        "namezh": "吊刑",
+        "namejp": "吊し女"
+    },
+    {
+        "name": "上からの交尾プレス/Mating Press From Above ",
+        "prompt": "  mating press from above, 1boy, closed mouth, nipples,   ass, hetero,  nude, lying,   indoors, sex, spread legs, cum, on back, feet, vaginal, arms up, completely nude, pillow, toes, hug, cum in pussy, soles, from above, ejaculation, tatami, orgasm, m legs,  futon, internal cumshot, boy on top, tissue box, deep penetration, mating press, tissue, used tissue,, { internal cumshot, uterus, |  } , motion lines,  trembling  ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "從上面交配按",
+        "namejp": "上からの交尾プレス"
+    },
+    {
+        "name": "乳房指マン/grabbed breast fingering ",
+        "prompt": " grabbed breast over shoulder, looking at viewer,  {1boy| 2boys,} nipples, hetero,  {completely nude| topless| bottomless}, penis, tongue, solo focus, cum, feet out of frame, grabbing, faceless male, trembling, grabbing another's breast, grabbing from behind, eyes out of frame,  torogao, half-closed eyes, hands up, fingering, pussy juice, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "抓乳房指交",
+        "namejp": "乳房指マン"
+    },
+    {
+        "name": "口から溢れる/cum overflow from mouth",
+        "prompt": "excessive cum, cum overflow, cum, cum in mouth, cum in nose,cum in ass, sex, sex from behinds , {1-2$$ cum inflation, inflation, | stomach bulge, | sagging breast, },{ fucked silly, |ahegao, | rolling eyes, | closed eyes, | | |  } ,huge ejaculation,  hetero, doggy style, arm grab, 1boy, faceless male,   motion lines,  trembling ",
+        "negative_prompt": "",
+        "category": "正常性交",
+        "namezh": "精液從口中溢出",
+        "namejp": "口から溢れる"
+    },
+    {
+        "name": "マンコ無料  / public free use",
+        "prompt": " FUCK ME FREE USE  arrow, tally, body writing, spread legs, used condom, public use, english text, dildo, after vaginal, after sex, price list, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "公開免費使用",
+        "namejp": "マンコ無料"
+    },
+    {
+        "name": "ごみ箱 /trash can",
+        "prompt": "after_rape ,in trash can, cumdrip, cumpool,  trash_can , opened trash can, anus,pussy, trash bag, cum in container, tally,  cum in anal, after vaginal, after anal, used condom, codom, used tissue, sex toy, dildo, trash bag, trash,{caution tape,| tape} ,  { from above, | },  ",
+        "negative_prompt": " ",
+        "category": "BDSM",
+        "namezh": "垃圾桶",
+        "namejp": "ごみ箱"
+    },
+    {
+        "name": "集団レイプ乱交/gangbang orgy",
+        "prompt": " gangbang, orgy,  group sex, hetero,, {2girls,| 3girls,|4girls, |5girls, |6+girls,  } ,, {2boys,| 3boys,|4boys, |5boys, |6+boys,  },  { lineup|  column, | }, {5-8$$ cum in pussy, |cumdrip, |peeing, |pussy juice, |cum overflow, |cum pool,| cum, |cum on breasts, |cum on hair, |deepthroat,| kiss,|knee up,| standing,| looking at another, |vaginal, }, {1-3$$ motion lines,| sound effects,| trembling}, , {3-5$$ fucked silly, |ahegao, | rolling eyes, | closed eyes, |brown eyes,| nipples, |pussy,|spread legs, |spread pussy,   } , {2-3$$ faceless male,| fat male,| muscular male,   }, {3-5$$ arm support,|   bent over,|  hand in panties,|  handjob, |  cow girl, | full nelson, |sex from behind, oral,| reverse cowgirl positionsitting,|suspended congress, }, {3-5$$ black hair,|  blue hair,| blonde hair,|  brown hair, |gradient hair,|long hair,|blush,  short hair, | bob cut,}, {5-8$$ thighhighs,| completely nude,| jewelry,| necklace,  | hair bow, |hair ornament,|swimsuit,|bikini, |bikini,| dress,| nude,|, thighhighs,| shirt,|, school uniform,|school swimsuit,|unconventional maid,   | sweat, |testicles | ｜underwear,|naked apron, }, {3-5$$  lying,|  mating press,  |rabbing, | gloved handjob, |missionary,| sex,|}, {3-5$$ breasts,| medium breasts,|large breasts, |huge breasts, |large penis, |huge penis, |wide hips,|small breasts,|flat chest,   }, {bedroom,| water,poolside, | outdoors, |simple background, | indoors,|classroom, | stadium, |market, |living room,|beach  }",
+        "negative_prompt": "",
+        "category": "異常性交,多P,",
+        "namezh": "集團亂交",
+        "namejp": "集団レイプ乱交"
+    },
+    {
+        "name": "のぞき ネトラレ/peeping netorare",
+        "prompt": " cheeting wife, cheeting  husband,  cheeting ,netorare, sex, hetero, peeping,peeking,{ panties,| bottomless,}  sex from behind,  clothed sex, stealth sex, {blurry background,| blurry foreground,| depth of field, }",
+        "negative_prompt": "",
+        "category": "異常性交, NTR",
+        "namezh": "偷窺網友",
+        "namejp": "のぞきネトラレ"
+    },
+    {
+        "name": " たちセックス/standing sex from behind",
+        "prompt": " sex from behind,,holding arms, intersex , motion lines,size difference,standing sex , height difference, from side,  tiptoes, {sagging breasts| } ,{cum in pussy, |cumdrip, |peeing, |pussy juice, |cum overflow, |cum pool,}",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "從後面站立性交",
+        "namejp": "たちセックス"
+    },
+    {
+        "name": "お姫様抱っこ/princess carry,",
+        "prompt": ",princess carry,1girl,1boy,",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "公主抱",
+        "namejp": "お姫様抱っこ"
+    },
+    {
+        "name": "足舐め/licking foot,",
+        "prompt": " licking foot,1girl, foot focus,  {panties| bottomless,| topless| completely nude,  }   ,1man,{grin,|evil smile, } {,barefoot,| removing shoes, }",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "舔腳、",
+        "namejp": "足舐め"
+    },
+    {
+        "name": "ハーフスクワット/half squatting",
+        "prompt": "half squatting,arms behind head,standing,{ sports bra,shorts,|short shorts | sportswear, | croptop,| sleeveless top,| loose clothes,     } { barefoot, | sneakers, |high heel sneakers, | socks| no socks }",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "半蹲",
+        "namejp": "ハーフスクワット"
+    },
+    {
+        "name": "奴隷市場/slave market",
+        "prompt": "slave market, {multiple girls, lineup,|2girls,bound together,| 3girls,bound together,| 4girls,lineup,| 5girls,lineup,| 6+girls,lineup, } for sale, market,bdsm,slave, {,bound | shibari, | restrained,|  }  ,{bound {wrists, | arms ,| legs}, |arms behind back, | bound torso,  } { upper body,| portrait,| close-up,| full body,  } {1-2$$ depth of field,| blurry background,| blurry foreground, }{ from behind, | from side,| from below,| from above,| dutch angle,| | | | | | },{1-2$$ | cuffs,| sign,| chain| leash, }, {1-3 price tag, |price, |price list, }, {1-3name tag, |name,|text, } {completely nude,| {1-2$$ naked cape, | topless, |bottomless, | torn clothes, | torn armors} },{5-10$$ sex toys,| dildo,| crying,  | vibrator, | cuffs, | ankle cuffs, | chain, |choker,|pillory, |neck bell, |anal beads, |  |object insertion, |,covered eyes,|  tongue out,|nipple piercing, | saliva trail,|crying | gag,| wiffle gag,| gagged,|ball |tape,  },{2-4$$erection, | cum in pussy, |cumdrip, |peeing, |pussy juice, |cum overflow, |cum on hair, |cum pool,|wooden horse,riding,| hanging | cage, |after sex,| standing,| raped },{outdoors,| indoors | stadium, |jail |fruit narket| food market| market stall, | meat_market| stage } , {  public use| {public indecency, |public masturbation, |public bondage, |public urination, |public service announcement,} }",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "奴隸市場",
+        "namejp": "奴隷市場"
+    },
+    {
+        "name": "女体盛り/nyotaimori",
+        "prompt": " ( nyotaimori:1.3), food on body,lying on table,sushi, maguro,  {1-4$$ nori , makizushi, shrimp tempura,}  { indoors. tatami, japanese aesthetic, | simple background,| gradient background,  }{prompt}, ",
+        "negative_prompt": "",
+        "category": "異常性交",
+        "namezh": "女體盛",
+        "namejp": "女体盛り"
+    },
+    {
+        "name": "砧/upside-down sex",
+        "prompt": "  upside-down, sex, 1girl, 1boy, penis, vaginal, spread legs,lying,,ass, {indoors,  {couch | bed} | { outdoors,{ beach| public use,| public nudity,  } } } , cum in pussy, trembling,{ rolling eyes,| fucked silly, |closed eyes saliva drip, |ahegao,| naughty face, |smile, |tongue out,    } {grabbing ass, |leg grab,|stomach bulge,   },{prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "顛倒性交(砧)",
+        "namejp": "砧"
+    },
+    {
+        "name": "ロープ渡/rope walking",
+        "prompt": " rope walking,1girl,bound,bdsm,bondage,pussy juice,rope,crotch rub, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "走繩",
+        "namejp": "ロープ渡"
+    },
+    {
+        "name": "産卵/egg layingegg",
+        "prompt": "  laying,egg,pregnant,nude,{tentacles,|  } ahegao,pussy juice trail, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "產卵",
+        "namejp": "産卵"
+    },
+    {
+        "name": "まんぐり返し/folded pose",
+        "prompt": "   1girl, lying, legs up, { thigh grab,|ass grab,} { completely nude, | ,} { spread legs, spread pussy, | spread pussy pinned,   |, }{ sex, hetero, 1boy, cum | , }  { pussy juice, | sweat, |  } , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "摺疊姿勢",
+        "namejp": "まんぐり返し"
+    },
+    {
+        "name": "クロッチずらし/panties aside",
+        "prompt": "    clothing aside, pussy, panties,grabbing panties,simple background,spread pussy, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "將內褲放在一旁",
+        "namejp": "クロッチずらし"
+    },
+    {
+        "name": "フェラチオとオナニー/ fellatio and masturbation",
+        "prompt": "   fellatio and masturbation, fellatio, female masturbation,fingering,pussy,1boy,squatting, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "口交和自慰",
+        "namejp": "フェラチオとオナニー"
+    },
+    {
+        "name": "ポールダンス/pole dancing",
+        "prompt": "  stripper pole,pole dancing,stripper, { bikini,| topless, | bottomless, | completely nude, |revealing clothes, | reverse bunnysuit, | playboy bunny, |||||   }  ,{ | ,| squatting,|upside-down, }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "鋼管舞",
+        "namejp": "ポールダンス"
+    },
+    {
+        "name": "マン汁/pussy juice",
+        "prompt": " pussy juice,pussy,{1-3$$ pussy juice trail,| excessive pussy juice,|  pussy juice stain,|  pussy juice puddle, }  , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "淫水",
+        "namejp": "マン汁"
+    },
+    {
+        "name": "乳首責め/nipple pull",
+        "prompt": " ,nipple pull,nipple tweak, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "乳頭拉扯",
+        "namejp": "乳首責め"
+    },
+    {
+        "name": "だいしゅきホールド/legs lock",
+        "prompt": "   leg lock, sex, 1girl, 1boy,hug,lying,on bed,face on breasts,{ from behind, | from side,| from above,| dutch angle,| | | | | | }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "腿鎖定",
+        "namejp": "だいしゅきホールド"
+    },
+    {
+        "name": "乳もみ/grabbing breasts",
+        "prompt": "    { grabbing breasts,1boy,  | grabbing from behind,1boy, | 1girl,  grabbing own breast,  } , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "抓乳房",
+        "namejp": "乳もみ"
+    },
+    {
+        "name": "裂けた服/torn clothes",
+        "prompt": "   ( torn clothes:1.3), nipples,pussy, torn  {pantyhose,| panties,| bikini, | short shorts, | pantyhose,| pantyhose, | pantyhose, | pantyhose, | bodysuit, | swimsuit,| school uniform,  }   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "撕破衣服",
+        "namejp": "裂けた服"
+    },
+    {
+        "name": "機械姦/sex machine",
+        "prompt": " sex machine, restrained, bound, bdsm, stationary restraints,  {1-4$$ milking machine,| head-mounted display,| wooden horse,  } {1-6$$ tube,| cable,|blindfold,|object insertion,| sex toy,| mind control,| corruption,| gagged,| }machine,forced orgasm, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "機械姦",
+        "namejp": "機械姦"
+    },
+    {
+        "name": "フェラチオ(複数)/cooperative fellatio",
+        "prompt": "  1boy, hetero, penis, oral, fellatio, group sex, cooperative fellatio,{4girls| 2girls, | 3girls,}  , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "多口口交",
+        "namejp": "フェラチオ(複数)"
+    },
+    {
+        "name": "子宮口/cervix",
+        "prompt": "  ,ultra- spread pussy, cervix , cervix prolapse,{anus|pussy juice, | cumdrip,  }  { uncensored, | censored, | endoscopy view }  {simple background,|  indoors} , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "子宮口",
+        "namejp": "子宮口"
+    },
+    {
+        "name": "駅弁/suspended congress",
+        "prompt": "  ekiben,suspended congress,1girl,1boy,sex,vaginal, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "火車便當",
+        "namejp": "駅弁"
+    },
+    {
+        "name": "遮住重要部位/covering privates",
+        "prompt": "   covering privates,covering breasts,covering crotch,{standing|sitting|lying}, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "遮蓋私處",
+        "namejp": "遮住重要部位"
+    },
+    {
+        "name": "顔面騎乗位/Face Sitting",
+        "prompt": "  sitting on face,1boy,1girl,girl on top, {1-2$$  |skirt,|panties,|bare foot,| topless, |bottomless, |completely nude, | swimsuit,|thighhighs,   }{ squatting, |sitting, | kneeling, |spread legs, | wariza, | }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "面坐",
+        "namejp": "顔面騎乗位"
+    },
+    {
+        "name": "押し車/Wheelbarrow position",
+        "prompt": "  wheelbarrow position, arm support, push-ups, sex from behind,{ upside-down,| jack-o' challenge,}  1girl, 1boy,torso grab, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "車輪勢",
+        "namejp": "押し車"
+    },
+    {
+        "name": "セルフ挿入/guided penetration",
+        "prompt": " (holding penis:1.3), guided penetration, 1girl, 1boy, hetero, penis, sex, vaginal, girl on top, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "導引插入",
+        "namejp": "セルフ挿入"
+    },
+    {
+        "name": "潮吹き/ female ejaculation",
+        "prompt": "   female ejaculation,pussy,spread legs  , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交後",
+        "namezh": "女性高潮",
+        "namejp": "潮吹き"
+    },
+    {
+        "name": "縛り/shibari",
+        "prompt": " japanese aesthetic, shibari,bound,{ hemp brown rope,| red rope,  }, bdsm,bound torso,  {1-6$$ crotch rope,| arms behind back | bound wrists, |bound arms, |bound legs,|bound ankles, | bound thighs,  | bound knees,| bound_breasts,   }  { completely nude, | shibari over clothes, | shibari under clothes, |, |, |, |  }  , {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "緊縛",
+        "namejp": "縛り"
+    },
+    {
+        "name": "ハーネス縛り/harness",
+        "prompt": "  harness,bdsm,bondage,o-ring,bound, belt ,bound torso,  {1-6$$ crotch harness,| arms behind back | bound wrists, |bound arms, |bound legs,|bound ankles, | bound thighs,  | bound knees,| bound_breasts,   }  { completely nude, | belt over clothes, | belt under clothes,  |choker,  collar, |spiked collar,  | animal collar, |pet play,  |, |  }  , {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "皮帶緊縛",
+        "namejp": "ハーネス縛り"
+    },
+    {
+        "name": "乱交/group sex",
+        "prompt": " group sex,{ {multiple boys,| 1boy, | 2boys, | 3boys, |4boys, | 6+boys,   } { 1girl,| 2girls,| 3girls,| 4girls,|  multiple girls,|6+girls,  }| 1girl, 3boys,  }  hetero, sex, orgy ,gangbang, gangbang rape, forced gangbang , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,多P",
+        "namezh": "群交",
+        "namejp": "乱交"
+    },
+    {
+        "name": "乱交 4P / foursome",
+        "prompt": " group sex, {2girls, 2boys,| 1girl, 3boys, | 1boy, 3girls,  }gangbang, group sex, foursome,",
+        "negative_prompt": "",
+        "category": "正常性交,多P",
+        "namezh": "4P",
+        "namejp": "乱交4P"
+    },
+    {
+        "name": "仕込みローター/ vibrator under clothes",
+        "prompt": " vibrator under clothes, {egg vibrator| remote control vibrator, | hitachi magic wand, |implied vibrator,  },pussy juice, {vibrator cord,| vibrator in thighhighs, }  {1-4$$ fucked silly,| ahegao, | trembling, | sound effects, | heavy breathing,  }  , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "震動器在衣服裡",
+        "namejp": "仕込みローター"
+    },
+    {
+        "name": "百合双頭ディルド/ yuri,double dildo",
+        "prompt": " yuri,double dildo,{prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "百合雙頭假陽具",
+        "namejp": "百合双頭ディルド"
+    },
+    {
+        "name": "足コキ/footjob",
+        "prompt": "  footjob,1girl,1boy, {penis, | large penis, |huge penis, |gigantic penis, |penis,  }  ,{ barefoot,  toes, | socks, | boots, |high heels, barefoot,  toes, | barefoot,  toes, | barefoot,  toes, |  }   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "腳交",
+        "namejp": "足コキ"
+    },
+    {
+        "name": "胸ちら/nipple slip",
+        "prompt": "   leaning forward, loose clothes,munechira, breasts, downblouse,  cleavage,nipple slip,  { pink nipples, | nipples,| nipple piercing, |puffy nipples, | areola slip, |strap slip, |breast slip, |inverted nipples, |nipple ring }   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲,BDSM",
+        "namezh": "乳頭露出",
+        "namejp": "胸ちら"
+    },
+    {
+        "name": "腹ぼこ/extrem insertion",
+        "prompt": "    extrem insertion,stomach bulge,vaginal ,{cum,|pussy juice,|bleeding,   }, { happy, |sad, |ahegao, |rolling eyes, |fucked silly, }  {  large penis, |huge penis, |gigantic penis, | huge dildo,   }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "極端插入",
+        "namejp": "腹ぼこ"
+    },
+    {
+        "name": "雌犬ポーズ/paw pose",
+        "prompt": "  paw pose,squatting,spread legs, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "爪子勢",
+        "namejp": "雌犬ポーズ"
+    },
+    {
+        "name": "マンコ拡張/Speculum",
+        "prompt": "  {1-2$$ speculum | dilation tape },  pussy spreader,spread pussy,bdsm, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲,BDSM",
+        "namezh": "鴨嘴器",
+        "namejp": "マンコ拡張"
+    },
+    {
+        "name": "二穴責め/double insertions",
+        "prompt": "  {dildo,|dildo and  {anal ball,anal beads| anal tail| butt plug }} , double insertion,anal,vaginal,{ completely nude,  nude,| panties aside, | bottomless,   },1girl,object insertion  , {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "雙插入",
+        "namejp": "二穴責め"
+    },
+    {
+        "name": "スライム姦/slime sex",
+        "prompt": "  slime sex,slime , slime  , vaginal, restrained,  { fellatio,| anal insertion,  | tentacle sex,  } transparent slime, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "史萊姆異種姦",
+        "namejp": "スライム姦"
+    },
+    {
+        "name": "ペットプレイ/pet play",
+        "prompt": "  bdsm,pet play,chain , choker, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "寵物遊戲",
+        "namejp": "ペットプレイ"
+    },
+    {
+        "name": "食い込み/Wedgie",
+        "prompt": "     wedgie,  partially visible vulva, {bikini| panties, | panties, | panties, | panties, | panties, | panties,  } pull,   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "楔",
+        "namejp": "食い込み"
+    },
+    {
+        "name": "胸ちら(後ろから)/breasts view from behind",
+        "prompt": "  breasts view from behind,from behind,breasts,bare neck,cleavage,  1girl,from above,kimono,solo, look back , clothes slip , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "從後面看乳房",
+        "namejp": "胸ちら(後ろから)"
+    },
+    {
+        "name": "マンスジ/cameltoe",
+        "prompt": "   cameltoe,1girl,{ ass,thick thighs,  | groin,  }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "駱駝趾",
+        "namejp": "マンスジ"
+    },
+    {
+        "name": "乳もみ(服の下)/grabbing breasts under clothes",
+        "prompt": "    hand under clothes,grabbing another's breast,1girl,1boy,grabbing from behind,loose clothes, stomach,underboob, {clothes lift, {crop top| shitr| tanktop | top } | { leotard, | bodysuit, | bra | swimsuit, | bikini,   } }  }   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "抓乳(在衣服下)",
+        "namejp": "乳もみ(服の下)"
+    },
+    {
+        "name": "素股/grinding",
+        "prompt": " grinding,1girl,penis,girl on top { leaking,  suggestive fluid,  | ,   }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "素股",
+        "namejp": "素股"
+    },
+    {
+        "name": "スカートの中に手を入れる/hand under skirt",
+        "prompt": "  hand under skirt,skirt,groping,1girl,1boy,shirt , stomach, groin, public hair, loose skirt , button_off   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "手在裙子下",
+        "namejp": "スカートの中に手を入れる"
+    },
+    {
+        "name": "玉舐め/testicle sucking",
+        "prompt": "  (testicle sucking:1.3) ,   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "吮吸睪丸",
+        "namejp": "玉舐め"
+    },
+    {
+        "name": "多重マンコ/ multiple pussy",
+        "prompt": "  multiple pussy, { 3girls,| 4girls,|  multiple girls,|6+girls,  },from below, thick thighs, bottomless, { 1-3$$ pussy_hair,| pussy juice, anus,| cumdrip,  },  looking down, {prompt}, ",
+        "negative_prompt": "",
+        "category": "異常性交,多P",
+        "namezh": "多陰部",
+        "namejp": "多重マンコ"
+    },
+    {
+        "name": "逆海老吊り/Shrimp tie ",
+        "prompt": "  from below,  shibari, bound, bdsm, bondage, suspension,rope,arms behind back, bound ankles, bound torso, on stomach,  nipples,  indoors, japanese aesthetic, stomach,navel,   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "逆海老吊",
+        "namejp": "逆海老吊り"
+    },
+    {
+        "name": "ローションプレイ/lotion play",
+        "prompt": "  (transparent liquid:1.5),  lotion play, lotion,oiled, air mattress,    bathroom,   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "乳液遊戲",
+        "namejp": "ローションプレイ"
+    },
+    {
+        "name": "ずり上げブラ/bra lift",
+        "prompt": "  bra lift   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "掀胸罩",
+        "namejp": "ずり上げブラ"
+    },
+    {
+        "name": "脱ぎかけ/clothes pull",
+        "prompt": "  clothes pull, undressing, partially undressed,clothes lift, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "衣服拉扯",
+        "namejp": "脱ぎかけ"
+    },
+    {
+        "name": "中出し/after sex",
+        "prompt": "  cumdrip,after sex,cum,pussy,spread pussy,cum pool,   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交,性交後",
+        "namezh": "性愛後",
+        "namejp": "中出し"
+    },
+    {
+        "name": "パンティー引き/ panty pull",
+        "prompt": "  panty pull,  { 1boy pulling another's clothes| 1girl, pull_own_panties }  ,panties,panty pull,1girl, grabbing  , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "內褲拉扯",
+        "namejp": "パンティー引き"
+    },
+    {
+        "name": "挿入前/ imminent penetration",
+        "prompt": "  1girl,  imminent penetration, penis, 1boy, erection,spread legs  , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "即將插入",
+        "namejp": "挿入前"
+    },
+    {
+        "name": "電マ/hitachi magic wand",
+        "prompt": "  hitachi magic wand,,1girl,spread legs, {prompt}, ",
+        "negative_prompt": "",
+        "category": "前戲,BDSM",
+        "namezh": "按摩棒",
+        "namejp": "電マ"
+    },
+    {
+        "name": "大の字/sprawled",
+        "prompt": "  sprawled, arms up, spread arms, spread legs,  bound, bdsm,bondage,restrained, { rope, | chain}  bound wrists, bound ankle, {prompt}, ",
+        "negative_prompt": "",
+        "category": "前戲,BDSM",
+        "namezh": "大文字",
+        "namejp": "大の字"
+    },
+    {
+        "name": "松葉崩し/Pine Needle Break",
+        "prompt": "   1girl,1boy,leg lift,leg up,matsubakuzushi,sex,vaginal,  hetero,  insertion, leg grab, knee grab  , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "松葉崩",
+        "namejp": "松葉崩し"
+    },
+    {
+        "name": "仰け反り/arched back orgasms",
+        "prompt": " arched back orgasms, 1girl, 1boy, sex, head back, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "拱背高潮",
+        "namejp": "仰け反り"
+    },
+    {
+        "name": "車内フェラ/car fellatio",
+        "prompt": "  car fellatio,1girl,1boy,penis,oral,fellatio,motor vehicle,car interior,from side, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "車內口交",
+        "namejp": "車内フェラ"
+    },
+    {
+        "name": "片足パンティー引き/ panty pull(standing on the one leg)",
+        "prompt": " holding panties,standing on one leg,panties around one leg,undressing ,from side,bent over , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "拉內褲(單腳站立)",
+        "namejp": "片足パンティー引き"
+    },
+    {
+        "name": "隠姦(ドア)/stealth sex(door)",
+        "prompt": "  stealth sex, pov doorway,half opening door,1girl,1boy,netorare,sex from behind, hand_on_hip, blush,  {prompt}, ",
+        "negative_prompt": "",
+        "category": "異常性交,NTR",
+        "namezh": "隱形性交(門後)",
+        "namejp": "隠姦(ドア)"
+    },
+    {
+        "name": "バックセックス/sex from behind",
+        "prompt": "   sex from behind,1girl,1boy, { all fours, | top-down bottom-up, | standing sex, }  holding another's {hand,| wrist,|hips } , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "從後面性交",
+        "namejp": "バックセックス"
+    },
+    {
+        "name": "寝バック/on bed sex from behind",
+        "prompt": "  on stomach,1girl,sex,1boy,sex from behind,bed {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "在床上從後面性交",
+        "namejp": "寝バック"
+    },
+    {
+        "name": "アナル舐め/anilingus",
+        "prompt": "  anilingus,  ,licking anal,tongue out,1girl,1boy ,testicles, grab_hips, {prompt}, ",
+        "negative_prompt": "正常性交,前戲",
+        "category": "",
+        "namezh": "肛交",
+        "namejp": "アナル舐め"
+    },
+    {
+        "name": "まさぐる/groping",
+        "prompt": "  groping, groping motion, train interior,  {prompt}, ",
+        "negative_prompt": "",
+        "category": "異常性交,痴漢,前戲",
+        "namezh": "摸奶",
+        "namejp": "まさぐる"
+    },
+    {
+        "name": "電車痴漢/chikan groping",
+        "prompt": "  groping, groping motion, train interior, chikan ,grabbing another's {1-4$$ breast, | pussy| ass, | waist.  } , {office lady | milf,| school uniform, jk|  }  {1-4$$ bottomless, | topless| top_lift| skirt lift, | panty pull, | bra_aside| panties_aside| panties around one leg,  } ,  {prompt}, ",
+        "negative_prompt": "",
+        "category": "異常性交,痴漢,前戲",
+        "namezh": "電車癡漢",
+        "namejp": "痴漢触り合い"
+    },
+    {
+        "name": "乳寄せ/breasts squeeze",
+        "prompt": "   breasts own squeeze, cleavage,  breasts focus,  {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "乳房擠壓",
+        "namejp": "乳寄せ"
+    },
+    {
+        "name": "６９/ 69",
+        "prompt": " arched back, 69, 1girl, 1boy, oral, fellatio, penis ,hands on  thighs, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "69",
+        "namejp": "69"
+    },
+    {
+        "name": "前屈み/bent",
+        "prompt": "  bent over,leaning forward, {hand on hip| } { cleavage, |  }{prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "前屈",
+        "namejp": "前屈み"
+    },
+    {
+        "name": "アナルビーズ/anal beads",
+        "prompt": "  anal beads,sex toy,anal object insertion, spread ass, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM,前戲",
+        "namezh": "肛珠",
+        "namejp": "アナルビーズ"
+    },
+    {
+        "name": "種付けプレス/mating press",
+        "prompt": "   mating press,1girl,sex,1boy,{1-5$$ sound effect,| montion line,| moaning| trembling, |speed lines,  },cum,cum overflow, cum pool, nude male, uncensored, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "按壓交尾",
+        "namejp": "種付けプレス"
+    },
+    {
+        "name": "浣腸/enema",
+        "prompt": "   (enema:1.4), object insertion, anal , large syringe,  graduated scale ,holding syringe, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM,前戲",
+        "namezh": "灌腸",
+        "namejp": "浣腸"
+    },
+    {
+        "name": "ちんぐり返し/Amazon Position",
+        "prompt": "  chinguri,sex,1girl,1boy,penis,Amazon Position, amazon position,  squatting,grin,holding another's foot, pumping{prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "女上支配",
+        "namejp": "ちんぐり返し"
+    },
+    {
+        "name": "陰部特寫/bottom focus",
+        "prompt": "   ( huge clitoris,  erect clitoris:1.3) leg up,pussy juice,from below, labia, anal, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "陰部特寫",
+        "namejp": "陰部特寫"
+    },
+    {
+        "name": "劈腿/ standing split",
+        "prompt": "  standing split, standing,hand hold feet, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "劈腿",
+        "namejp": "立ちスプリット"
+    },
+    {
+        "name": "拳交/ fisting",
+        "prompt": " ({ fisting,anus | anal fisting, pussy}:1.3) ass focus,bottomless,  1girl, hetero, 1boy,  spread anus, spread own ass, from behind,suspended { fingerless gloves, | partially fingerless gloves, |see-through gloves | , | , | , | , | , | , }  { fucked silly, |ahegao, rolling eyes, | closed eyes, | | |  }   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "拳交",
+        "namejp": "フィストリング"
+    },
+    {
+        "name": "肉便器/public use",
+        "prompt": "  nikubenki,body writing, public use, bdsm,bondage, spread legs, spread pussy, legs_up, tally,toilet, bound ankles, suspended,  bottomless ,anus|  {1-4$$ cum in pussy, |cum in ass, | dildo,  |pussy juice, | cumdrip,|dilation tape |peeing,  } uncensored,   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "肉便器",
+        "namejp": "肉便器"
+    },
+    {
+        "name": "土下座/dogeza",
+        "prompt": "   dogeza, sitting, completely nude, { folded clothes,|dildo,| vibrator, | hitachi magic wand,  } , {tatami, | wooden floor},japanes aesthetic,  ,bdsm,dimples of venus,  top-down bottom-up,   , {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "土下座",
+        "namejp": "土下座"
+    },
+    {
+        "name": "ガラス押し付け/against glass",
+        "prompt": "  against glass , fog , reflection,  exhale ,  hands against glass,   {bra| tanktop | topless, nipples pressed, spread nipple,  }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "押玻璃",
+        "namejp": "ガラス押し付け"
+    },
+    {
+        "name": "揺れるおっぱい/bouncing breasts",
+        "prompt": " bouncing breasts,breasts,motion lines, }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "彈跳乳房",
+        "namejp": "揺れるおっぱい"
+    },
+    {
+        "name": "行列/ procession",
+        "prompt": "   procession, {multiple boys,| 2boys, mmf threesome, | 3boys,  } group sex,,  1girl, fellatio, standing, full body, from side,sex from behind, back on wall, all the way through, double penetration, triple penetration, motion lines, sound effects, trembling leg, hanging breasts, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "行列",
+        "namejp": "行列"
+    },
+    {
+        "name": "壁ディルド/wall dildo",
+        "prompt": "  (wall dildo,dildo,dildo on wall,:1.3) from side,vaginal,sex toy,all fours ,against wall, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "牆上假老二",
+        "namejp": "壁ディルド"
+    },
+    {
+        "name": "ごっくん/cum in mouth",
+        "prompt": "  cum in mouth, tongue,cupping hands, open mouth, cum pool,  cum dripping,   {penis, | multiple penis |erection, | huge penis, ||||  } {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交",
+        "namezh": "口中射精",
+        "namejp": "ごっくん"
+    },
+    {
+        "name": "フィンガリング/fingering",
+        "prompt": " { fingering,| anal fingering,}   ,  {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "手淫",
+        "namejp": "フィンガリング"
+    },
+    {
+        "name": "臭いオナニー/smelling masturbation",
+        "prompt": "   smelling masturbation,female masturbation,smelling {clothes| underwear, } ,1girl,smelling,fingering, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "嗅聞自慰",
+        "namejp": "臭いオナニー"
+    },
+    {
+        "name": "断面図/cross-section",
+        "prompt": " 1girl cross-section, danmen, sex, vaginal, 1boy, cum in pussy, cum_In_uterus, internal cumshot, uncensored, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,特殊",
+        "namezh": "截面",
+        "namejp": "断面図"
+    },
+    {
+        "name": "背面座位/reverse cowgirl position",
+        "prompt": "   reverse cowgirl position,1boy,girl on top,1girl,sex,vaginal,spread legs , {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交,",
+        "namezh": "反向女牛仔位",
+        "namejp": "背面座位"
+    },
+    {
+        "name": "事後精液を拭う/after sex",
+        "prompt": " cum wiping, cum wiping, holding tissue , cum_driping, after sex, after vaginal,  uncensored, used tissue, tissue box, {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交後",
+        "namezh": "性交後",
+        "namejp": "事後精液を拭う"
+    },
+    {
+        "name": "アナル拡張/anal dilation",
+        "prompt": "  spread anal,  anal fluid, ass focus, oil, sweat, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM,前戲",
+        "namezh": "肛門擴張",
+        "namejp": "アナル拡張"
+    },
+    {
+        "name": "尻コキ/buttjob",
+        "prompt": "  buttjob,ass,penis,1boy ,1girl, from behind,  {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "臀交",
+        "namejp": "尻コキ"
+    },
+    {
+        "name": "立ちバック/standing sex from behind",
+        "prompt": " standing,sex from behind,1girl,1boy{prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,性交,",
+        "namezh": "從後面站立性愛",
+        "namejp": "立ちバック"
+    },
+    {
+        "name": "三角木馬/Triangular Wooden Horse",
+        "prompt": "  triangular wooden horse,riding,bdsm,bound,{prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "三角木馬",
+        "namejp": "三角木馬"
+    },
+    {
+        "name": "乳合わせ/ against_breasts",
+        "prompt": "  against_breasts,  2girls,yuri, from side, hug,{prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "乳房互壓",
+        "namejp": "乳合わせ"
+    },
+    {
+        "name": "深喉/irrumatio deepthroat",
+        "prompt": "  irrumatio, deepthroat, suprise deepthroat,imminent irrumatio, hand on head,forced blowjob,{1-4$$ vomiting,| saliva drip,| rolling eyes,| ahegao,| motion lines,| nasal hair  }  {prompt}, ",
+        "negative_prompt": "",
+        "category": "正常性交,前戲",
+        "namezh": "深喉",
+        "namejp": "深喉"
+    },
+    {
+        "name": "尻たたき/spanking ass",
+        "prompt": " spanking ass, from behind, ass focus,spanked,hand on hip,ass blush ,sound effects, motion lines, trembling,  {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "打屁股",
+        "namejp": "尻たたき"
+    },
+    {
+        "name": "スパイダー騎乗位/cowgirl position",
+        "prompt": " cowgirl position, nipple stimulation, 1girl, 1boy, girl on top, pov,  female_lead, {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "女牛仔位",
+        "namejp": "スパイダー騎乗位"
+    },
+    {
+        "name": "バックセックス、ローアングル/ Sex from behind low angle",
+        "prompt": " from below , sex from behind, 1girl, 1boy, hetero,standing sex {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "從後面低角度性交",
+        "namejp": "バックセックス、ローアングル"
+    },
+    {
+        "name": "クスコ/speculum",
+        "prompt": " speculum, pussy,cervix {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "鴨嘴鏡2",
+        "namejp": "クスコ"
+    },
+    {
+        "name": "栄光の壁/glory wall",
+        "prompt": "  glory wall, ass, from behind ,picture frame, through wall,  text on wall,1girl, solo,{school uniform | armor, | suit| swimsuit, | __female_style_combinations/casual__ ,  } , { {  short shorts, |denim shorts,  | panties,| bikini bottoms,| thighhighs,| torn clothes,  } | {1-7$$ pubic hair, |bottomless, pussy, | cum in pussy,  |  pussy juice, | cumdrip, | cum on ass, | defloration,bleeding, | amputee, |  body writing, | body markings,| thighhighs,  } }, {1-7$$ | sex toys,| paddle, |riding crop,| cane,   |anal beads, anal plug | price tag, |price list,| weapon | cum can | id card, | dildo, |huge dildo,| folded clothes,| tissue box, |used tissue, | used condom, |condom box, | condom belt,| barcode,|qr code, |tattoo, }, id photo , graffiti on wall, degrading remarks on wall, text ,name tag, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "卡在牆上(後)",
+        "namejp": "栄光の壁"
+    },
+    {
+        "name": "貝合わせ/tribadism",
+        "prompt": "  kaiawase,tribadism,yuri,moaning, pussy juice trail,spread legs, {from side, | from above} indoors,on bed, {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "磨鏡",
+        "namejp": "貝合わせ"
+    },
+    {
+        "name": "騎乗フェラ/ riding fellatio",
+        "prompt": "  1girl ,  ( fellatio,blow_job, head_back:1.2) ,view between legs, 1boy lower body, implied fellatio,uncensored, { squatting, | standing, }  {1-4$$ cumdrip| saliva drip,| pussy juice, | grabbing another's ass, | grabbing another's legs,| huge penis, veiny penis,} {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "口交-騎乘位",
+        "namejp": "騎乗フェラ"
+    },
+    {
+        "name": "乳首コンドーム/nipples condom",
+        "prompt": "  nipples condom, condom belt,  nipple piercing, used condom,  , {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "乳頭套",
+        "namejp": "乳首コンドーム"
+    },
+    {
+        "name": "角オナ/ table humping",
+        "prompt": " table humping,table, crotch rub, { bottomless, public hair, spread pussy | skirt lift, panties, |bikini}  { pussy juice, | covering crotch,| pussy peek, | cumdrip, }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "桌上擠壓",
+        "namejp": "角オナ"
+    },
+    {
+        "name": "女体盛りクリーム/cream decoration",
+        "prompt": " nyotaimori, whipped cream,decoration,strawberry, { lying_on_table |sitting,| standing, spread legs,  }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "奶油裝飾",
+        "namejp": "女体盛りクリーム"
+    },
+    {
+        "name": "逆さ吊り/upside down",
+        "prompt": " upside-down,bdsm,rope,arms behind back ,japanese aesthetic, indoors, , {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "倒立",
+        "namejp": "逆さ吊り"
+    },
+    {
+        "name": "処女喪失/defloration",
+        "prompt": " defloration,bleeding, pussy pussy juice, penis insertion, cum ,  {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "開苞",
+        "namejp": "処女喪失"
+    },
+    {
+        "name": "首枷/pillory",
+        "prompt": " pillory,bdsm,bound,japanese aesthetic, indoors, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "首枷",
+        "namejp": "首枷"
+    },
+    {
+        "name": "獅子舞い/Tightly Closed Lids",
+        "prompt": " shishimai, legs up,both legs on another's shoulder,1girl lying on table,  1boy standing, sex, hetero, hugging, vaginal, , {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "獅子舞",
+        "namejp": "獅子舞い"
+    },
+    {
+        "name": "添い寝/lying on side",
+        "prompt": " 1girl,lying,on bed,pillow,bed sheet,on side,breasts, from side, dutch angle, looking at viewer, sheet { pajamas,| completely nude, } cleavage, {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "側臥在身邊",
+        "namejp": "添い寝"
+    },
+    {
+        "name": "踏みちん/footjob with high heels",
+        "prompt": " footjob, 1boy, penis,clothed female nude male,erection, veiny penis,  , evil smile,{1-2$$ high heels,|  thighhighs,} , {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "高跟鞋踩踏",
+        "namejp": "踏みちん"
+    },
+    {
+        "name": "ボトル挿入/ alcohol bottle insertion",
+        "prompt": " { whiskey, |sake | wine} bottle,drunk  ,alcohol insertion, alcohol, anal, anal object insertion, bottomless, , {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "酒精瓶插入",
+        "namejp": "ボトル挿入"
+    },
+    {
+        "name": "丸呑み/vore",
+        "prompt": " vore,  no head , tentacles, restrained,fro, below,trembling legs, leg focus,peeing, pussy juice, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "異種姦吞入",
+        "namejp": "丸呑み"
+    },
+    {
+        "name": "性器ピアス/Genital piercing",
+        "prompt": " pussy piercing, clitoris piercing, pussy, spread puusy, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "生殖器穿孔",
+        "namejp": "性器ピアス"
+    },
+    {
+        "name": "搾乳/milking",
+        "prompt": " milking, milking machine, lactation, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "擠奶",
+        "namejp": "搾乳"
+    },
+    {
+        "name": "行列(女性)/girls standing in a row",
+        "prompt": " girls standing in a row, { 5girls,|4girls,| 6+girls, | multiple girls,  }   1boy,penis,sex,wide shot,full body, sex from behind, against wall, motion lines, gangbang, group sex, indoors,  {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "女孩站成一排",
+        "namejp": "行列(女性)"
+    },
+    {
+        "name": "髪コキ/hairjob",
+        "prompt": " hairjob,penis,1girl, 1boy,, {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "髮交",
+        "namejp": "髪コキ"
+    },
+    {
+        "name": "電気責め/electric torture",
+        "prompt": " nipple clamps , electric torture, electricity,electric clamps,lightning,   nipples, bound, {1-4$$ clitoris clamp,| tongue clamp, |labia clamps, } bdsm,bondage,trembling,{pussy juice,  peeing,} { ahegao,|  angry,vein}  {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "電刑",
+        "namejp": "電気責め"
+    },
+    {
+        "name": "尻相撲/ass sumo wrestling",
+        "prompt": " sumo, ass, ass to ass , 2girls,full body,bent over, leaning forward, hands_on_own_legs, { swimsuit|, bikini,| bottomless,| completely nude, }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "屁股相撲",
+        "namejp": "尻相撲"
+    },
+    {
+        "name": "膝裏コキ/knee job",
+        "prompt": " 1girl, knee job, penis between back of the knee, penis,1boy, , {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "膝交",
+        "namejp": "膝裏コキ"
+    },
+    {
+        "name": "ブリッジ/arched back",
+        "prompt": " 1girl, (arched back:1.2),(from side, tiptoes:1.3){fellatio|sex, insertion,}{on stomach, | } { hands touch  ground| grabbing another},  ,{1boy | mmf} threesome,  standing, hetero, {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "弓背",
+        "namejp": "ブリッジ"
+    },
+    {
+        "name": "ちんこ目隠し/penis over eyes",
+        "prompt": " (penis over eyes:1.3),  1boy,1girl,  penis, erection,covered eyes, tongue out, saliva trail, blush, veiny penis, bottomless, , {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "莖遮雙眼",
+        "namejp": "ちんこ目隠し"
+    },
+    {
+        "name": "舌入れクンニ/tongue insertion cunnilingus",
+        "prompt": " tongue insertion, cunnilingus, tongue out, tongue insertion cunnilingus, oral, 1boy,  hetero, pussy juice, anus, , {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "舌入陰",
+        "namejp": "舌入れクンニ"
+    },
+    {
+        "name": "開脚吊し上げ/leg-hanging",
+        "prompt": " shibari, spread legs, bound, bdsm, bondage, rope, arms behind back, frogtie,rope from ceiling, vertical rope, bound legs, bound arms, { completely nude, | underwear, | topless, | bottomless,  }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "開腳吊",
+        "namejp": "開脚吊し上げ"
+    },
+    {
+        "name": "踏みつけ/stomp head",
+        "prompt": " foot stomping on  head , stomping, 1boy standing, from below, , {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "踩頭",
+        "namejp": "踏みつけ"
+    },
+    {
+        "name": "立ち松葉/waist-hanging position",
+        "prompt": " upside-down,legs up,   1boy, 1girl, sex, hetero,  lying, standing,penis, spread legs,leg lift,grabbing legs,arms behind back, {pussy peek,| cum in pussy,|pussy juice, }, {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "立松葉",
+        "namejp": "立ち松葉"
+    },
+    {
+        "name": "習字/vagina calligraphy",
+        "prompt": " bottomless, vagina calligraphy, calligraphy brush, object insertion, spread legs,squatting, , {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "膣書道",
+        "namejp": "膣書道"
+    },
+    {
+        "name": "立ち６９/standing 69",
+        "prompt": " standing 69, 69, nude,1boy,1girl,fellatio, cunnilingus,upside-down,hug, {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "站立69",
+        "namejp": "立ち６９"
+    },
+    {
+        "name": "多重插入/multiple",
+        "prompt": " multip penetrations, 1girl, multiple boys, penis, sex, group sex, {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "多重插入",
+        "namejp": "多重插入"
+    },
+    {
+        "name": "だるま/quadruple amputee",
+        "prompt": " (quadruple amputee:1.2) ,  1girl, bdsm, bound, bondage,  {rope,| chain,| belt, }  bound torso, {hanging, |lying, } { completely nude, | bodysuit, | bikini|  } ,{1-4$$ sex oy,| ahegao,| pussy juice,| cum in pussy,| cumdrip,| tattoo, | rolling eyes, | peeing,   }{prompt}, ",
+        "negative_prompt": "",
+        "category": "GURO",
+        "namezh": "達摩(GURO)",
+        "namejp": "だるま"
+    },
+    {
+        "name": "多物挿入/multiple insertion",
+        "prompt": "  multiple insertion, sex toy, vaginal object insertion, anal object insertion,{ 3-4$$ anal beads|, anal plug,| dildo|, huge dildo,| cum in pussy, |penis,|tentacles,   }, spread legs , {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "複數插入",
+        "namejp": "多物挿入"
+    },
+    {
+        "name": "足舐め(つま先)/licking toes",
+        "prompt": " licking toes, barefoot, 1girl, 1boy , from above, {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "舔腳趾",
+        "namejp": "足舐め(つま先)"
+    },
+    {
+        "name": "くすぐり/ tickling",
+        "prompt": " tickling, tickle torture, laughing,{1-3$$  feathers, gloves, fingers} {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "癢",
+        "namejp": "くすぐり"
+    },
+    {
+        "name": "鹿倒立/plantar flexion",
+        "prompt": " plantar flexion, upside-down, handstand, from side,one_leg_folded, {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "倒立",
+        "namejp": "鹿倒立"
+    },
+    {
+        "name": "わかめ酒/wakamezake",
+        "prompt": " wakamezake,  seiza,  sake, pubic hair,sake pool on pussy, closed legs, aqua  transparent  liquid,  from above, tatami,wooden floor, opened kimono, bottomless, pee pool, , {prompt}, ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "女陰酒",
+        "namejp": "わかめ酒"
+    },
+    {
+        "name": "布団潜り込み/under covers",
+        "prompt": " under covers, {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "潛入被窩",
+        "namejp": "布団潜り込み"
+    },
+    {
+        "name": "背入踏頭/stomping",
+        "prompt": " <lora:foot_on_head_IL:1> stomping, foot on head, sex from behind, sex, ass, { bottomless | completely nude, | {panty pull, | panties around one leg, |panties aside, } }  top-down bottom-up, 1boy, hetero, 1girl, doggystyle, uncensored ,grabbing another's {ass, |leg,|hand} {1-5$$ trembling,| ahegao,| anger,|rolling eyes, |tears, | motion lines, | sound effects, | peeing, | cum in pussy, cum overflow, | pussy juice, | drooling, |used condom, |used tissue,} ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "踩頭後入",
+        "namejp": "背入踏頭"
+    },
+    {
+        "name": "大文字/four outstretched",
+        "prompt": " bdsm, restrained ,outstretched_legs,outstretched_arms,bound wrists, bound ankles, pulling,arched back,   stationary restraints ,,wide separated arms,wide spread legs,  {chain,| rope,| cuffs, ankle cuffs, |spreader bar   }, { forced orgasm , {sex toy,| dildo , | large insertion,   | ,vibrator, }   | rape, 1boy, sex }{lying on bed,| upright restraints |  sex machine | gynecology chair } {bulge, | } ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "大文字",
+        "namejp": "大文字"
+    },
+    {
+        "name": "IDカード/ID carf ",
+        "prompt": " id card covered pussy,completely nude, covering crotch,  {prompt}, ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "身份卡",
+        "namejp": "IDカード"
+    },
+    {
+        "name": "乳交/paizuri ",
+        "prompt": " paizuri, mammary intercourse,  Titty fuck, titfuck,penis, erection, 1girl, 1boy, hetero,  breasts own squeeze, cleavage,  breasts focus, { topless, nipples,  | opened  bra, {covered nipples,|  nipple slip, } | oped clothes |completely nude,  },{ saliva drip,| tongue out, }   { fellatio face,| naughty face, | evil grin, } ,{ facial cum ,| cum on hair,| cum on breasts,| | | | | } ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "乳交",
+        "namejp": "パイズリ"
+    },
+    {
+        "name": "掐搏/choking ",
+        "prompt": " uncensored, choking,sex,neck grab, {1-3$$ ahegao,| rolling eyes,| tongue out,| cum in pussy, | cumdrip,  |peeing, | cum pool,  }  { pov| sex from behind,  | group sex,  | rough sex,  | gangbang,  | rape, | forced orgasm,  |||  }   ",
+        "negative_prompt": "",
+        "category": "BDSM",
+        "namezh": "窒息",
+        "namejp": "窒息"
+    },
+    {
+        "name": "栄光の壁(前 )/stuck_in_wall",
+        "prompt": "stuck_in_wall,through wall,{ rolling eyes,| ahegao,|evil smile, | fellatio face,   } breasts focus, hetero,upper body,  portrait, { paizuri | fellatio,| penis,| huge penis,| veiny penis,| large penis,|,|,|,|,|,|  }arms behind back, { topless, |  }{ cum on body, |cum on hair,| cum overflow, | peeing, | cum pull,  } ",
+        "negative_prompt": "legs,wips,legs",
+        "category": "BDSM",
+        "namezh": "卡在牆上(前)",
+        "namejp": "栄光の壁(前)"
+    },
+    {
+        "name": "full nelson/full nelson ",
+        "prompt": " full nelson { arms_only|legs_held|leg_held|anal|double_penetration|piledriver|vaginal|||||}, {sex| anal_sex spread pussy}   ",
+        "negative_prompt": "",
+        "category": "",
+        "namezh": "納爾遜式鎖",
+        "namejp": "フル_ネルソン  "
+    }
 ]
