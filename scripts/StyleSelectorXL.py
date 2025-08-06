@@ -10,6 +10,7 @@ import subprocess
 import platform
 
 stylespath = ""
+current_language = "default"
 
 def get_json_content(file_path):
     try:
@@ -20,16 +21,43 @@ def get_json_content(file_path):
         print(f"A Problem occurred: {str(e)}")
 
 
-def read_sdxl_styles(json_data):
+def read_sdxl_styles(json_data, language="default"):
     if not isinstance(json_data, list):
         print("Error: input data must be a list")
         return None
     
-    names = [item['name'] for item in json_data if isinstance(item, dict) and 'name' in item]
+    names = []
+    for item in json_data:
+        if isinstance(item, dict) and 'name' in item:
+            # 根據語言選擇顯示名稱
+            if language == "chinese" and item.get('namezh'):
+                display_name = item['namezh']
+            elif language == "japanese" and item.get('namejp'):
+                display_name = item['namejp']
+            else:
+                display_name = item['name']
+            names.append(display_name)
+    
     names.sort()
     # 在名單前面加入 "Random Select" 選項
     names.insert(0, "Random Select")
     return names
+
+
+def get_categories(json_data):
+    """從JSON數據中提取所有category值"""
+    categories = set()
+    categories.add("ALL")  # 預設選項
+    
+    for item in json_data:
+        if isinstance(item, dict) and 'category' in item:
+            category_str = item['category']
+            if category_str:
+                # 支援多值（逗號分隔）
+                cats = [cat.strip() for cat in category_str.split(',') if cat.strip()]
+                categories.update(cats)
+    
+    return sorted(list(categories))
 
 
 def getStyles():
@@ -38,6 +66,19 @@ def getStyles():
     stylespath = json_path
     json_data = get_json_content(json_path)
     return read_sdxl_styles(json_data)
+
+
+def get_original_name_from_display(display_name, json_data, language="default"):
+    """根據顯示名稱找到原始名稱"""
+    for item in json_data:
+        if isinstance(item, dict) and 'name' in item:
+            if language == "chinese" and item.get('namezh') == display_name:
+                return item['name']
+            elif language == "japanese" and item.get('namejp') == display_name:
+                return item['name']
+            elif item['name'] == display_name:
+                return item['name']
+    return display_name
 
 
 def createPositive(style, positive):
@@ -54,8 +95,11 @@ def createPositive(style, positive):
             else:
                 return positive  # 如果沒有可用樣式，返回原始提示
 
+        # 根據顯示名稱找到原始名稱
+        original_name = get_original_name_from_display(style, json_data, current_language)
+        
         for template in json_data:
-            if template.get('name') == style:
+            if template.get('name') == original_name:
                 return template['prompt'].replace('{prompt}', positive)
 
         raise ValueError(f"No template found with name '{style}'.")
@@ -77,14 +121,48 @@ def createNegative(style, negative):
             else:
                 return negative  # 如果沒有可用樣式，返回原始提示
 
+        # 根據顯示名稱找到原始名稱
+        original_name = get_original_name_from_display(style, json_data, current_language)
+        
         for template in json_data:
-            if template.get('name') == style:
+            if template.get('name') == original_name:
                 json_negative_prompt = template.get('negative_prompt', "")
                 return f"{json_negative_prompt}, {negative}" if json_negative_prompt and negative else json_negative_prompt or negative
 
         raise ValueError(f"No template found with name '{style}'.")
     except Exception as e:
         print(f"An error occurred: {str(e)}")
+
+
+def get_random_style_by_category(category, json_data, language="default"):
+    """根據category隨機選擇樣式"""
+    available_styles = []
+    
+    for item in json_data:
+        if isinstance(item, dict) and 'name' in item:
+            if category == "ALL":
+                # 從所有樣式中選擇
+                available_styles.append(item)
+            else:
+                # 從特定category中選擇
+                item_categories = []
+                if 'category' in item and item['category']:
+                    item_categories = [cat.strip() for cat in item['category'].split(',') if cat.strip()]
+                
+                if category in item_categories:
+                    available_styles.append(item)
+    
+    if available_styles:
+        selected_item = random.choice(available_styles)
+        # 根據語言返回對應的顯示名稱
+        if language == "chinese" and selected_item.get('namezh'):
+            return selected_item['namezh']
+        elif language == "japanese" and selected_item.get('namejp'):
+            return selected_item['namejp']
+        else:
+            return selected_item['name']
+    
+    return None
         
 
 def append_style_to_json(name, prompt, negative_prompt):
@@ -108,7 +186,7 @@ def process_uploaded_json(file_obj):
     global stylespath
     
     if file_obj is None:
-        return None, None, "No file uploaded"
+        return None, None, None, "No file uploaded"
     
     try:
         # 讀取上傳的檔案內容
@@ -123,15 +201,16 @@ def process_uploaded_json(file_obj):
         # 載入JSON內容
         json_data = get_json_content(file_path)
         if json_data:
-            new_styles = read_sdxl_styles(json_data)
+            new_styles = read_sdxl_styles(json_data, current_language)
+            categories = get_categories(json_data)
             filename = os.path.basename(file_path)
-            return new_styles, filename, f"Successfully loaded: {filename}"
+            return new_styles, categories, filename, f"Successfully loaded: {filename}"
         else:
-            return None, None, f"Failed to parse JSON file: {os.path.basename(file_path)}"
+            return None, None, None, f"Failed to parse JSON file: {os.path.basename(file_path)}"
             
     except Exception as e:
         print(f"Error processing uploaded file: {e}")
-        return None, None, f"Error processing file: {str(e)}"
+        return None, None, None, f"Error processing file: {str(e)}"
 
 
 def open_json_file():
@@ -149,7 +228,7 @@ def open_json_file():
 
 def update_styles_from_uploaded_file(file_obj):
     """從上傳的檔案更新樣式列表"""
-    new_styles, filename, status = process_uploaded_json(file_obj)
+    new_styles, categories, filename, status = process_uploaded_json(file_obj)
     
     if new_styles:
         # 返回更新的下拉選單選項和狀態
@@ -158,6 +237,7 @@ def update_styles_from_uploaded_file(file_obj):
             gr.Dropdown.update(choices=new_styles, value='base'),
             gr.Dropdown.update(choices=new_styles, value='base'),
             gr.Dropdown.update(choices=new_styles, value='base'),
+            gr.Dropdown.update(choices=categories, value='ALL'),
             filename or "Unknown file",
             status
         )
@@ -169,8 +249,22 @@ def update_styles_from_uploaded_file(file_obj):
             gr.update(),
             gr.update(),
             gr.update(),
+            gr.update(),
             status or "File upload failed"
         )
+
+
+def update_language(language):
+    """更新語言設定並重新載入樣式"""
+    global current_language
+    current_language = language
+    
+    json_data = get_json_content(stylespath)
+    if json_data:
+        new_styles = read_sdxl_styles(json_data, language)
+        return gr.Dropdown.update(choices=new_styles, value='base')
+    else:
+        return gr.update()
 
 
 def copy_styles_to_prompt_func(current_prompt, current_neg_prompt, style1, style2, style3, style4):
@@ -252,9 +346,27 @@ class StyleSelectorXL(scripts.Script):
                     with FormColumn(elem_id="Style At Beginning"):
                         style_at_beginning = gr.Checkbox(value=False, label="Place Style At Beginning")
 
+                # 語言選擇器
+                gr.Markdown("### Language Selection")
                 with FormRow():
                     with FormColumn(min_width=160):
-                        allstyles = gr.Checkbox(value=False, label="Generate All Styles In Order")
+                        language_selector = gr.Dropdown(
+                            choices=["default", "chinese", "japanese"], 
+                            value="default", 
+                            label="Display Language"
+                        )
+
+                # Random Category選擇器
+                with FormRow():
+                    with FormColumn(min_width=160):
+                        # 初始化categories
+                        initial_json_data = get_json_content(stylespath) if stylespath else []
+                        initial_categories = get_categories(initial_json_data) if initial_json_data else ["ALL"]
+                        random_category = gr.Dropdown(
+                            choices=initial_categories, 
+                            value="ALL", 
+                            label="Random Category"
+                        )
 
                 with FormRow():
                     with FormColumn(min_width=160):
@@ -302,12 +414,19 @@ class StyleSelectorXL(scripts.Script):
                 # Status display for add to main prompt
                 with FormRow():
                     status_display = gr.Textbox(label="Status", lines=3, interactive=False)
+
+                # 設定語言選擇器功能
+                language_selector.change(
+                    fn=update_language,
+                    inputs=[language_selector],
+                    outputs=[style1]
+                )
                         
                 # Set up JSON file upload functionality
                 json_file_upload.change(
                     fn=update_styles_from_uploaded_file,
                     inputs=[json_file_upload],
-                    outputs=[style1, style2, style3, style4, file_status, upload_status]
+                    outputs=[style1, style2, style3, style4, random_category, file_status, upload_status]
                 )
                 
                 # Set up open JSON file functionality
@@ -369,45 +488,43 @@ class StyleSelectorXL(scripts.Script):
                     """
                 )
                 
-        return [is_enabled, allstyles, style_at_beginning, use_current_prompt, prompt_preview, neg_prompt_preview, style1, style2, style3, style4, file_status, upload_status]
+        return [is_enabled, style_at_beginning, use_current_prompt, prompt_preview, neg_prompt_preview, style1, style2, style3, style4, language_selector, random_category, file_status, upload_status]
 
 
-    def process(self, p, is_enabled, allstyles, style_at_beginning, use_current_prompt, current_prompt_text, current_neg_prompt_text, style1, style2, style3, style4, file_status, upload_status):
+    def process(self, p, is_enabled, style_at_beginning, use_current_prompt, current_prompt_text, current_neg_prompt_text, style1, style2, style3, style4, language_selector, random_category, file_status, upload_status):
         if not is_enabled:
             return
 
+        global current_language
+        current_language = language_selector
+
         batchCount = len(p.all_prompts)
 
-        # Gather selected styles
-        selected_styles = [s for s in [style1, style2, style3, style4] if s]
-
-        # Generate style sets per prompt
-        styles_per_prompt = {}
-        for i in range(batchCount):
-            if allstyles:
-                # Cycle through all styles one at a time
-                # 過濾掉 "Random Select" 選項以獲得實際的樣式名稱
-                actual_styles = [s for s in self.styleNames if s != "Random Select"]
-                if actual_styles:
-                    styles_per_prompt[i] = [actual_styles[i % len(actual_styles)]]
-                    print(f"AllStyles mode - Image {i}: {styles_per_prompt[i]}")
-                else:
-                    styles_per_prompt[i] = selected_styles
-            else:
-                # Same selected styles for all prompts
-                styles_per_prompt[i] = selected_styles
-                print(f"Normal mode - Image {i}: {selected_styles}")
+        # Gather selected styles and handle Random Select
+        selected_styles = []
+        json_data = get_json_content(stylespath)
         
+        for style in [style1, style2, style3, style4]:
+            if style and style != 'base':
+                if style == "Random Select":
+                    # 根據Random Category進行隨機選擇
+                    random_style = get_random_style_by_category(random_category, json_data, current_language)
+                    if random_style:
+                        selected_styles.append(random_style)
+                else:
+                    selected_styles.append(style)
+
         print(f"Total batch count: {batchCount}")
-        print(f"Available style names count: {len(self.styleNames) if self.styleNames else 0}")
+        print(f"Selected styles: {selected_styles}")
+        print(f"Random category: {random_category}")
+        print(f"Current language: {current_language}")
 
         # Inject positive prompts
         for i, original_prompt in enumerate(p.all_prompts):
-            styles = styles_per_prompt[i]
-            injected_styles = [createPositive(s, "") for s in styles if s]
+            injected_styles = [createPositive(s, "") for s in selected_styles if s]
             injection_parts = []
             
-            print(f"Processing prompt {i}: styles = {styles}")
+            print(f"Processing prompt {i}: styles = {selected_styles}")
             print(f"Injected styles for prompt {i}: {injected_styles}")
             
             # Add style prompts
@@ -434,11 +551,10 @@ class StyleSelectorXL(scripts.Script):
 
         # Inject negative prompts
         for i, original_prompt in enumerate(p.all_negative_prompts):
-            styles = styles_per_prompt[i]
-            injected_styles = [createNegative(s, "") for s in styles if s]
+            injected_styles = [createNegative(s, "") for s in selected_styles if s]
             injection_parts = []
             
-            print(f"Processing negative prompt {i}: styles = {styles}")
+            print(f"Processing negative prompt {i}: styles = {selected_styles}")
             print(f"Injected negative styles for prompt {i}: {injected_styles}")
             
             # Add style prompts
@@ -466,9 +582,10 @@ class StyleSelectorXL(scripts.Script):
         # Metadata
         p.extra_generation_params.update({
             "Style Selector Enabled": True,
-            "Style Selector AllStyles": allstyles,
             "Style Selector At Beginning": style_at_beginning,
             "Style Selector Use Current Prompt": use_current_prompt,
+            "Style Selector Language": current_language,
+            "Style Selector Random Category": random_category,
             "Style Selector Styles Used": ", ".join(selected_styles)
         })
 
