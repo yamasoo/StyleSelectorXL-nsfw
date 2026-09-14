@@ -5,6 +5,7 @@ from modules.ui_components import FormRow, FormColumn, FormGroup, ToolButton
 import json
 import os
 import random
+import re
 import subprocess
 import platform
 
@@ -255,6 +256,72 @@ def resolve_style_name(style, category="ALL"):
     return style
 
 
+_BRACE_PATTERN = re.compile(r'\{([^{}]*)\}')
+
+
+def _resolve_single_brace(inner):
+    """解析單一一層 {...} 的內容，支援：
+    - {A|B|C}                 -> 隨機選 1 個
+    - {2$$A|B|C}              -> 隨機選固定 2 個，用預設分隔符 ', ' 接起來
+    - {1-2$$A|B|C}            -> 隨機選 1~2 個
+    - {1-2$$ and $$A|B|C}     -> 自訂分隔符 ' and '
+    - 選項可帶權重前綴 '2::文字'，權重會被忽略（只當作一般選項，不影響機率）
+    這只是 sd-dynamic-prompts 語法的一個簡化子集，滿足常見用法即可。
+    """
+    body = inner
+    min_n = max_n = 1
+    sep = ', '
+
+    m = re.match(r'^\s*(\d+)(?:-(\d+))?\$\$(.*)$', inner, re.S)
+    if m:
+        min_n = int(m.group(1))
+        max_n = int(m.group(2)) if m.group(2) else min_n
+        rest = m.group(3)
+        sep_match = re.match(r'^([^$]*)\$\$(.*)$', rest, re.S)
+        if sep_match:
+            sep = sep_match.group(1)
+            body = sep_match.group(2)
+        else:
+            body = rest
+
+    options = [opt.strip() for opt in body.split('|')]
+    cleaned = []
+    for opt in options:
+        wm = re.match(r'^\s*[\d.]+::(.*)$', opt, re.S)
+        cleaned.append(wm.group(1).strip() if wm else opt)
+    options = [o for o in cleaned if o != ""]
+
+    if not options:
+        return ""
+
+    if max_n < min_n:
+        max_n = min_n
+    n = random.randint(min_n, max_n)
+    n = max(0, min(n, len(options)))
+    if n == 0:
+        return ""
+
+    chosen = random.sample(options, n)
+    return sep.join(chosen)
+
+
+def resolve_dynamic_syntax(text, _max_passes=25):
+    """反覆解析字串中的 {A|B}、{1-2$$A|B|C} 語法，支援巢狀（由內往外一層一層展開）。
+    這是專門補給「風格範本注入」用的：因為這段文字是在 process_batch() 才被
+    寫進 prompt，Dynamic Prompts 擴充套件當時已經解析完一輪、不會再處理它，
+    所以風格範本裡若含有這類語法，要在這裡自己展開，否則會原封不動送進最終 prompt。"""
+    if not text:
+        return text
+    result = text
+    for _ in range(_max_passes):
+        new_result, count = _BRACE_PATTERN.subn(
+            lambda m: _resolve_single_brace(m.group(1)), result)
+        if count == 0:
+            break
+        result = new_result
+    return result
+
+
 def createPositive(style, positive, category="ALL"):
     """style 應已是實際名稱（Random Select 請先用 resolve_style_name 解析）。"""
     json_data = get_json_content(stylespath)
@@ -275,7 +342,8 @@ def createPositive(style, positive, category="ALL"):
                     prompt = ""
                 else:
                     prompt = str(prompt)
-                return prompt.replace('{prompt}', str(positive) if positive is not None else "")
+                merged = prompt.replace('{prompt}', str(positive) if positive is not None else "")
+                return resolve_dynamic_syntax(merged)
 
         raise ValueError(f"No template found with name '{style}'.")
     except Exception as e:
@@ -302,6 +370,7 @@ def createNegative(style, negative, category="ALL"):
                     json_negative_prompt = ""
                 else:
                     json_negative_prompt = str(json_negative_prompt)
+                json_negative_prompt = resolve_dynamic_syntax(json_negative_prompt)
                 neg_str = str(negative) if negative is not None else ""
 
                 if json_negative_prompt and neg_str:
