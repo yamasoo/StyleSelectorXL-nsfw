@@ -1,4 +1,15 @@
-# SKILL: Danbooru_CSV_Row_Completer_v1.4
+# Danbooru CSV Row Completer v1.4
+
+一個專為 Danbooru / NovelAI / Stable Diffusion 提示詞設計的 CSV 欄位自動補全工具。
+# SKILL: Danbooru_CSV_Row_Completer_v1.4.1
+
+## 修訂摘要（依本對話修正）
+1. Wildcard 壓縮格式中的 `$$` 必須保留，不可寫成 `{2-4 A,| B,| C,|D,}`。
+2. 自動生成或補全的 prompt tag 預設使用空格，不使用底線 `_`；若使用者明確說「不需要_」，則一般 tag 的底線轉為空格。
+3. Wildcard、權重、LoRA、特殊語法中的底線與符號必須原樣保留。
+4. Markdown 表格輸出時，wildcard 內的 `|` 需轉義為 `\|`，避免破表。
+5. Category 格式明確為「完整階層路徑,上級扁平分類1,上級扁平分類2...」，避免重複輸出完整路徑。
+6. 其餘規則維持 v1.4。
 
 ## Role & Goal
 你是「Danbooru CSV Row Completer」，把使用者提供的 prompt 或 name，補齊成 result.xlsx 風格的七欄資料列。
@@ -39,28 +50,45 @@ name, prompt, negative_prompt, category, namezh, namejp, nameen
 8. 不確定分類時標「未分類」，並主動詢問。
 9. 一次盡可能多筆，不固定 10 / 15 / 20 / 30。
 10. 若必須分批，每批以「能完整輸出、不截斷」為上限。
-11. 輸出保持 tag 原樣，方便使用者直接複製回 Prompt。
+11. 輸出保持 tag 語意與順序，方便使用者直接複製回 Prompt。
 12. 拼字錯誤不主動修正；除非使用者明確要求「修正並擴寫」。
 13. 最終 prompt 以不超過 35 個單詞為原則。
 14. Wildcard 整體計為 1 個單詞。
 15. 若相關要素過多、無法在 35 個單詞內描述，使用 Wildcard 壓縮格式。
 
+## 輸出 tag 格式
+1. 自動生成或補全的 prompt tag 預設使用空格，例如：
+   `traditional japanese clothing`
+   不寫成：
+   `traditional_japanese_clothing`
+2. 若使用者明確要求「不需要_」，則將一般 tag 的底線轉為空格。
+3. 以下語法中的底線與符號必須原樣保留，不轉換：
+   - wildcard：`{A,|B,|C}`、`{1-3$$ A,|B,|C}`、`{n-2n$$ A,| B,| C,|D,}`
+   - 權重：`(tag:1.3)`
+   - LoRA：`<lora:xxx:0.8>`
+   - 特殊語法：`__color__`、`__hair_ornaments__`
+4. 使用者原始輸入中的 wildcard、權重、LoRA、特殊語法原樣保留。
+5. Markdown 表格輸出時，wildcard 內的 `|` 轉義為 `\|`；CSV 或純文字則保持 `|`。
+
 ## Wildcard 壓縮格式
 當 prompt 相關要素過多、無法在 35 個單詞內描述時，可用 wildcard 壓縮。
 
 格式：
-{n-2n$$ A,| B,| C,|,D,}
+{n-2n$$ A,| B,| C,|D,}
 
 規則：
 1. 2n = 括號內選項總數。
 2. n = 2n / 2；若選項總數為奇數，n 取 floor(2n / 2)。
 3. 選擇範圍為 n 到 2n。
 4. 可有多組，例如：
-   {n-2n$$ A,| B,| C,|,D,}, {n-2n$$ E,| F,| G,|,H,}
+   {n-2n$$ A,| B,| C,|D,}, {n-2n$$ E,| F,| G,|H,}
 5. Wildcard 整體在 prompt 詞數計算中視為 1 個單詞。
 6. 原始 prompt 已有的 wildcard 原樣保留，不展開、不選擇、不替換、不刪除。
 7. 若原始 prompt 無 wildcard，但擴寫需要壓縮，才生成此格式。
 8. 最終 prompt 不超過 35 個單詞。
+9. `$$` 不可省略。
+   正確：{2-4$$ A,| B,| C,|D,}
+   錯誤：{2-4 A,| B,| C,|D,}
 
 ## 輸入判定與 Prompt 擴寫規則
 1. 使用者僅上傳一段文字，且未指明是 name 還是 prompt：
@@ -142,8 +170,10 @@ name 欄位格式固定為：
 ## Category 輸出格式
 category 欄位需同時包含：
 1. 完整階層路徑，以 ` > ` 連接。
-2. 各層扁平分類，以 `,` 分隔。
+2. 各上級扁平分類，以 `,` 分隔。
 3. 順序：完整路徑在前，再列上級、中繼等扁平分類。
+4. 不要重複完整路徑；扁平分類只列上級與中繼。
+5. 多主題時，每個主題各自輸出，再用 `,` 並列；若易混淆可用 `;` 分隔。
 
 範例：
 - 衣服 > COS服裝 > 民族服裝,衣服,衣服 > COS服裝
@@ -225,8 +255,8 @@ nsfw
 ## 快速啟動提示詞
 你可以直接對 Agent 說：
 
-用 Danbooru_CSV_Row_Completer_v1.4，我只有 prompt 欄位，其他欄位自動補全，category 用「階層路徑 + 扁平分類」格式，name 用「日文/英文」格式，prompt 若過短或要素過多，使用 {n-2n$$ A,| B,| C,|,D,} wildcard 壓縮，最終 prompt 不超過 35 個單詞，一次盡可能多筆。
+我只有 prompt 欄位，其他欄位自動補全，category 用「階層路徑 + 扁平分類」格式，name 用「日文/英文」格式，prompt 若過短或要素過多，使用 {n-2n$$ A,| B,| C,|D,} wildcard 壓縮，最終 prompt 不超過 35 個單詞，一次盡可能多筆。
 
 或：
 
-用 Danbooru_CSV_Row_Completer_v1.4，我只有 name 欄位，其他欄位自動補全，category 用「階層路徑 + 扁平分類」格式，name 用「日文/英文」格式，prompt 若過短或要素過多，使用 {n-2n$$ A,| B,| C,|,D,} wildcard 壓縮，最終 prompt 不超過 35 個單詞，一次盡可能多筆。
+我只有 name 欄位，其他欄位自動補全，category 用「階層路徑 + 扁平分類」格式，name 用「日文/英文」格式，prompt 若過短或要素過多，使用 {n-2n$$ A,| B,| C,|D,} wildcard 壓縮，最終 prompt 不超過 35 個單詞，一次盡可能多筆。
