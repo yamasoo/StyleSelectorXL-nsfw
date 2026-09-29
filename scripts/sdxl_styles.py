@@ -708,6 +708,47 @@ class StyleSelectorXL(scripts.Script):
                 cat1, cat2, cat3, cat4,
                 file_status, upload_status]
 
+    @staticmethod
+    def _auto_expand_batch(p, needed):
+        """AllStyles 模式：自動把 Batch count 設成「風格數量」，不需使用者手動填。
+        此時 p.all_prompts / all_seeds 等已經依原本的 n_iter 建好，所以要一併擴充。"""
+        batch_size = max(1, int(getattr(p, "batch_size", 1) or 1))
+        new_n_iter = max(1, -(-needed // batch_size))  # ceil
+        total = new_n_iter * batch_size
+        cur = len(p.all_prompts)
+        if total == cur and p.n_iter == new_n_iter:
+            return
+        p.n_iter = new_n_iter
+
+        def _fit(lst, filler):
+            if lst is None:
+                return lst
+            lst = list(lst)
+            if len(lst) > total:
+                return lst[:total]
+            while len(lst) < total:
+                lst.append(filler(len(lst)))
+            return lst
+
+        p.all_prompts = _fit(p.all_prompts, lambda i: p.all_prompts[0])
+        if getattr(p, "all_negative_prompts", None) is not None:
+            base_neg = p.all_negative_prompts[0]
+            p.all_negative_prompts = _fit(p.all_negative_prompts, lambda i: base_neg)
+        if getattr(p, "all_seeds", None) is not None:
+            base_seed = int(p.all_seeds[0])
+            step_seed = 1 if getattr(p, "subseed_strength", 0) == 0 else 0
+            p.all_seeds = [base_seed + (x * step_seed) for x in range(total)] \
+                if len(p.all_seeds) != total and step_seed else _fit(p.all_seeds, lambda i: base_seed)
+        if getattr(p, "all_subseeds", None) is not None:
+            base_sub = int(p.all_subseeds[0])
+            p.all_subseeds = [base_sub + x for x in range(total)] \
+                if len(p.all_subseeds) != total else p.all_subseeds
+        try:
+            shared.state.job_count = new_n_iter
+        except Exception:
+            pass
+        print(f"[StyleSelector] AllStyles: batch count auto-set to {new_n_iter} (batch size {batch_size}, {needed} styles)")
+
     def process(self, p, is_enabled, allstyles, style_at_beginning, use_current_prompt,
                 current_prompt_text, current_neg_prompt_text,
                 style1, style2, style3, style4,
@@ -749,6 +790,10 @@ class StyleSelectorXL(scripts.Script):
                 # 沒指定分類，或指定分類篩不到任何風格 → fallback 用全部風格
                 allstyles_pool = [s for s in StyleSelectorXL.styleNames if s not in ("base", "Random Select")]
 
+        if allstyles and allstyles_pool:
+            self._auto_expand_batch(p, len(allstyles_pool))
+            batchCount = len(p.all_prompts)
+
         # 為每一張圖解析出「實際 style name」（Random Select 只抽一次，正負向共用）
         styles_per_prompt = {}
         resolved_names_per_prompt = {}  # 記錄實際抽中的名稱，供參數顯示
@@ -779,6 +824,8 @@ class StyleSelectorXL(scripts.Script):
         print(f"Available style names count: {len(StyleSelectorXL.styleNames) if StyleSelectorXL.styleNames else 0}")
 
         # 存到 instance，供 process_batch() 使用
+        self.style_selector_allstyles = allstyles
+        self.style_selector_resolved_names = resolved_names_per_prompt
         self.style_selector_styles_per_prompt = styles_per_prompt
         self.style_selector_style_at_beginning = style_at_beginning
         self.style_selector_use_current_prompt = use_current_prompt
@@ -795,6 +842,9 @@ class StyleSelectorXL(scripts.Script):
                 used_desc.append(f"{actual} (from {c})" if c and c != "ALL" else actual)
             else:
                 used_desc.append(actual)
+
+        if allstyles and first_resolved:
+            used_desc = list(first_resolved)
 
         p.extra_generation_params.update({
             "Style Selector Enabled": True,
@@ -827,6 +877,18 @@ class StyleSelectorXL(scripts.Script):
 
         batch_size = len(prompts)
         start = batch_number * batch_size
+
+        # AllStyles：每個 batch 各自更新 infotext 的「Styles Used」，
+        # 讓每張圖的資訊顯示它實際套用的風格（而不是下拉選單目前的項目 / None）
+        if getattr(self, "style_selector_allstyles", False):
+            names = []
+            resolved = getattr(self, "style_selector_resolved_names", {})
+            for li in range(len(prompts)):
+                for n in resolved.get(start + li, []):
+                    if n not in names:
+                        names.append(n)
+            if names:
+                p.extra_generation_params["Style Selector Styles Used"] = ", ".join(names)
 
         style_at_beginning = self.style_selector_style_at_beginning
         use_current_prompt = self.style_selector_use_current_prompt
