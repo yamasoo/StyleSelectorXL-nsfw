@@ -44,12 +44,24 @@ stylespath = ""
 # 取得當前 py 檔所在目錄，並推算出擴充功能根目錄
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
+# 個人樣式表 ALL.json 不放進 git；找不到時改用 repo 內附的範例 ALL.example.json
+STYLE_FILE_CANDIDATES = ("ALL.json", "ALL.example.json")
+
+
+def default_styles_path():
+    for name in STYLE_FILE_CANDIDATES:
+        path = os.path.join(BASE_DIR, name)
+        if os.path.exists(path):
+            return path
+    return os.path.join(BASE_DIR, STYLE_FILE_CANDIDATES[0])
+
+
 def get_json_content(file_path):
     try:
         ext = os.path.splitext(file_path)[1].lower()
         if ext in (".xlsx", ".xls"):
             return read_xlsx_as_style_list(file_path)
-        with open(file_path, 'rt', encoding="utf-8") as file:
+        with open(file_path, 'rt', encoding="utf-8-sig") as file:
             json_data = json.load(file)
             return json_data
     except Exception as e:
@@ -226,16 +238,17 @@ def on_language_change(display_field, cat1, cat2, cat3, cat4):
 
 def getStyles():
     global stylespath
-    json_path = os.path.join(BASE_DIR, 'ALL.json')
+    json_path = default_styles_path()
     stylespath = json_path
+    file_name = os.path.basename(json_path)
 
     if not os.path.exists(json_path):
-        print("Warning: ALL.json not found, using default 'base' only.")
+        print(f"Warning: {file_name} not found, using default 'base' only.")
         return ["base", "Random Select"]
 
     json_data = get_json_content(json_path)
     if json_data is None:
-        print("Warning: Failed to parse ALL.json, using default 'base' only.")
+        print(f"Warning: Failed to parse {file_name}, using default 'base' only.")
         return ["base", "Random Select"]
 
     result = read_sdxl_styles(json_data)
@@ -617,7 +630,7 @@ class StyleSelectorXL(scripts.Script):
                     with FormColumn(min_width=200):
                         open_button = gr.Button(value="Open Current Style File", variant="secondary")
                     with FormColumn():
-                        file_status = gr.Textbox(label="Current File", value="ALL.json", interactive=False)
+                        file_status = gr.Textbox(label="Current File", value=os.path.basename(stylespath or default_styles_path()), interactive=False)
 
                 with FormRow():
                     upload_status = gr.Textbox(label="Upload Status", lines=1, interactive=False)

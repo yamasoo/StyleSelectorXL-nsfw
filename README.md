@@ -102,6 +102,13 @@
   ```
 - 舊版使用 `nsfw_styles.json`，新版預設讀取 `ALL.json`，請將既有風格檔更名或上傳替換。
 
+### 📁 風格檔位置（2.1）
+
+- 程式優先讀取擴充根目錄的 `ALL.json`；找不到時改讀 repo 內附的 `ALL.example.json`（13 筆範例）。
+- `ALL.json` 是個人樣式表，已列入 `.gitignore`，不會被推到 GitHub。要開始自訂時，把 `ALL.example.json` 複製一份改名為 `ALL.json` 再編輯。
+- 樣式表的 Excel 原始檔（`*.xlsx`）同樣只放在本機。
+- `SKILL_Danbooru_CSV_Row_Completer_v1.5.txt`：用 LLM 把 name / prompt 補齊成七欄樣式資料（輸出 TSV，可直接貼進 Excel）。
+
 ---
 
 **完整變更**：1.0 → 2.0
