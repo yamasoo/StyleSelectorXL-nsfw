@@ -45,7 +45,15 @@
 - 上傳成功會重建 category 清單與 style 下拉。
 - 副檔名檢查（`.json` / `.xlsx` / `.xls`）。
 
-### 8. 其他修正
+### 8. 正向提示內容選擇（naturl_prompt）
+- 樣式表新增選填欄位 `naturl_prompt`（也接受 `natural_prompt`）：風格的自然語言描述。JSON 與 Excel 都會讀取。
+- UI 新增「正向提示內容 (Positive Source)」：
+  - `prompt`：與原本相同，只加 tag（預設）。
+  - `naturl_prompt`：只加自然語言描述；沒有描述的風格自動改用 `prompt`，不會整個消失。
+  - `prompt + naturl_prompt`：先接所有風格的 tag，再接所有風格的描述。
+- 只影響正向提示；負向提示一律用 `negative_prompt`。生成時與「Copy Styles to Prompt」按鈕都會套用，infotext 會記錄 `Style Selector Positive Source`。
+
+### 9. 其他修正
 - `createPositive` / `createNegative` 對 `None`、非字串做防護。
 - `copy_styles_to_prompt_func` 重置時把 style choices 恢復成「全部風格」。
 - UI 元件順序與 `process()` 參數順序對齊（新增 cat1~4）。
@@ -74,6 +82,8 @@
   - 顯示文字可切換，實際傳回的 value 永遠是 canonical `name`，不影響生成邏輯
 
 - **AllStyles 模式強化**：若指定了分類，只在該分類內依序生成；未指定則跑全部風格。
+
+- **正向提示內容選擇**：可選擇正向提示使用 `prompt`、`naturl_prompt`（自然語言描述）或兩者都用，適合 Anima 這類同時理解 tag 與自然語言的模型。
 
 ### 🐛 重要修正
 

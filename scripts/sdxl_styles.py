@@ -76,7 +76,7 @@ def read_xlsx_as_style_list(file_path):
     Excel 規則：
       - 只讀第一個工作表
       - 第一列必須是欄位標題（header），至少要有 'name' 和 'prompt' 兩欄（大小寫不拘）
-      - 'negative_prompt'、'category'、'namezh'、'namejp' 為選填欄位，沒有就略過
+      - 'naturl_prompt'（也接受 'natural_prompt'）、'negative_prompt'、'category'、'namezh'、'namejp' 為選填欄位，沒有就略過
       - name 是空白的列會被跳過（可用來分隔/註解）
     """
     try:
@@ -104,7 +104,8 @@ def read_xlsx_as_style_list(file_path):
         return None
 
     col = {key: header.index(key) for key in
-           ("name", "prompt", "negative_prompt", "category", "namezh", "namejp", "nameen") if key in header}
+           ("name", "prompt", "naturl_prompt", "natural_prompt", "negative_prompt", "category", "namezh", "namejp", "nameen")
+           if key in header}
 
     def cell(row, key):
         idx = col.get(key)
@@ -126,6 +127,9 @@ def read_xlsx_as_style_list(file_path):
             "prompt": cell(row, "prompt") or "",
             "negative_prompt": cell(row, "negative_prompt") or "",
         }
+        natural = cell(row, "naturl_prompt") or cell(row, "natural_prompt")
+        if natural:
+            item["naturl_prompt"] = natural
         for optional_key in ("category", "namezh", "namejp", "nameen"):
             value = cell(row, optional_key)
             if value:
@@ -335,6 +339,75 @@ def resolve_dynamic_syntax(text, _max_passes=25):
     return result
 
 
+# 正向提示要用樣式表的哪個欄位
+POSITIVE_SOURCE_CHOICES = ["prompt", "naturl_prompt", "prompt + naturl_prompt"]
+
+
+def _template_natural(template):
+    """樣式的自然語言描述（欄位名稱 naturl_prompt；也接受 natural_prompt）。"""
+    for key in ("naturl_prompt", "natural_prompt"):
+        value = template.get(key)
+        if value is not None and str(value).strip():
+            return str(value)
+    return ""
+
+
+def createPositiveParts(style, positive, category="ALL"):
+    """回傳 (prompt 欄位結果, naturl_prompt 欄位結果)，兩者都已展開 {A|B} 語法。"""
+    json_data = get_json_content(stylespath)
+    pos_text = str(positive) if positive is not None else ""
+    try:
+        if not isinstance(json_data, list):
+            raise ValueError("Invalid JSON data. Expected a list of templates.")
+
+        if style == "Random Select":
+            style = resolve_style_name(style, category)
+            if style == "Random Select":
+                return pos_text, ""
+
+        for template in json_data:
+            if template.get('name') == style:
+                prompt = template.get('prompt', "")
+                prompt = "" if prompt is None else str(prompt)
+                merged = resolve_dynamic_syntax(prompt.replace('{prompt}', pos_text))
+                natural = resolve_dynamic_syntax(_template_natural(template).replace('{prompt}', ""))
+                return merged, re.sub(r"\s+", " ", natural).strip()
+
+        raise ValueError(f"No template found with name '{style}'.")
+    except Exception as e:
+        print(f"An error occurred in createPositiveParts: {str(e)}")
+        return pos_text, ""
+
+
+def combine_positive_parts(parts, source="prompt"):
+    """parts: [(prompt, natural), ...]，依 source 組成要加進正向提示的文字。
+    prompt + naturl_prompt：先放所有風格的 tag，再接所有風格的自然語言描述。
+    選 naturl_prompt 但某個風格沒有描述時，該風格改用 prompt，避免風格整個消失。"""
+    tags, sentences = [], []
+    for prompt, natural in parts:
+        prompt = (prompt or "").strip().strip(",").strip()
+        natural = (natural or "").strip()
+        if source == "naturl_prompt":
+            if natural:
+                sentences.append(natural)
+            elif prompt:
+                tags.append(prompt)
+        elif source == "prompt + naturl_prompt":
+            if prompt:
+                tags.append(prompt)
+            if natural:
+                sentences.append(natural)
+        else:
+            if prompt:
+                tags.append(prompt)
+    pieces = []
+    if tags:
+        pieces.append(", ".join(tags))
+    if sentences:
+        pieces.append(" ".join(sentences))
+    return ", ".join(pieces)
+
+
 def createPositive(style, positive, category="ALL"):
     """style 應已是實際名稱（Random Select 請先用 resolve_style_name 解析）。"""
     json_data = get_json_content(stylespath)
@@ -493,7 +566,7 @@ def update_styles_from_uploaded_file(file_obj, display_field="name"):
 def copy_styles_to_prompt_func(current_prompt, current_neg_prompt,
                                style1, style2, style3, style4,
                                cat1, cat2, cat3, cat4,
-                               display_field="name"):
+                               display_field="name", positive_source="prompt"):
     current_prompt = current_prompt or ""
     current_neg_prompt = current_neg_prompt or ""
 
@@ -511,18 +584,16 @@ def copy_styles_to_prompt_func(current_prompt, current_neg_prompt,
                 style_reset, style_reset, style_reset, style_reset,
                 'ALL', 'ALL', 'ALL', 'ALL')
 
-    positive_styles = []
+    positive_parts = []
     negative_styles = []
 
     for style, cat in selected:
         try:
             # 先 resolve 一次，正負向共用同一個實際 style
             actual = resolve_style_name(style, cat)
-            pos_style = createPositive(actual, "", cat)
+            positive_parts.append(createPositiveParts(actual, "", cat))
             neg_style = createNegative(actual, "", cat)
 
-            if pos_style and isinstance(pos_style, str) and pos_style.strip():
-                positive_styles.append(pos_style.strip())
             if neg_style and isinstance(neg_style, str) and neg_style.strip():
                 negative_styles.append(neg_style.strip())
         except Exception as e:
@@ -530,8 +601,8 @@ def copy_styles_to_prompt_func(current_prompt, current_neg_prompt,
             continue
 
     new_prompt = current_prompt
-    if positive_styles:
-        style_text = ", ".join(positive_styles)
+    style_text = combine_positive_parts(positive_parts, positive_source)
+    if style_text:
         if current_prompt.strip():
             new_prompt = f"{current_prompt}, {style_text}"
         else:
@@ -592,6 +663,12 @@ class StyleSelectorXL(scripts.Script):
                     with FormColumn(min_width=240):
                         display_lang = gr.Radio(choices=DISPLAY_FIELD_CHOICES, value="name",
                                                  label="模版風格顯示語言 (Display Field)")
+                with FormRow():
+                    with FormColumn(min_width=240):
+                        positive_source = gr.Radio(choices=POSITIVE_SOURCE_CHOICES, value="prompt",
+                                                   label="正向提示內容 (Positive Source)",
+                                                   info="prompt：tag；naturl_prompt：自然語言描述（沒有描述的風格改用 prompt）；"
+                                                        "兩者：tag 後面接描述。只影響正向提示")
 
                 # Style 1 ~ 4 与 Category 1 ~ 4 配对（各自獨立）
                 with FormRow():
@@ -674,7 +751,7 @@ class StyleSelectorXL(scripts.Script):
                     inputs=[prompt_preview, neg_prompt_preview,
                             style1, style2, style3, style4,
                             cat1, cat2, cat3, cat4,
-                            display_lang],
+                            display_lang, positive_source],
                     outputs=[prompt_preview, neg_prompt_preview,
                              style1, style2, style3, style4,
                              cat1, cat2, cat3, cat4]
@@ -719,7 +796,8 @@ class StyleSelectorXL(scripts.Script):
                 prompt_preview, neg_prompt_preview,
                 style1, style2, style3, style4,
                 cat1, cat2, cat3, cat4,
-                file_status, upload_status]
+                file_status, upload_status,
+                positive_source]
 
     @staticmethod
     def _auto_expand_batch(p, needed):
@@ -766,7 +844,8 @@ class StyleSelectorXL(scripts.Script):
                 current_prompt_text, current_neg_prompt_text,
                 style1, style2, style3, style4,
                 cat1, cat2, cat3, cat4,
-                file_status, upload_status):
+                file_status, upload_status,
+                positive_source="prompt"):
         # 這個 method 只負責「算出每張圖該套用哪個風格」，不直接改 p.all_prompts。
         # 原因：其他 AlwaysVisible 擴充套件（例如處理 __wildcard__ 的套件）的 process()
         # 可能在我們之後才執行，若它們用「第一張的 prompt」當範本重新產生整批 prompt，
@@ -841,6 +920,7 @@ class StyleSelectorXL(scripts.Script):
         self.style_selector_resolved_names = resolved_names_per_prompt
         self.style_selector_styles_per_prompt = styles_per_prompt
         self.style_selector_style_at_beginning = style_at_beginning
+        self.style_selector_positive_source = positive_source if positive_source in POSITIVE_SOURCE_CHOICES else "prompt"
         self.style_selector_use_current_prompt = use_current_prompt
         self.style_selector_current_prompt_text = current_prompt_text
         self.style_selector_current_neg_prompt_text = current_neg_prompt_text
@@ -863,6 +943,7 @@ class StyleSelectorXL(scripts.Script):
             "Style Selector Enabled": True,
             "Style Selector AllStyles": allstyles,
             "Style Selector At Beginning": style_at_beginning,
+            "Style Selector Positive Source": self.style_selector_positive_source,
             "Style Selector Use Current Prompt": use_current_prompt,
             "Style Selector Styles Used": ", ".join(used_desc) if used_desc else "None"
         })
@@ -872,6 +953,7 @@ class StyleSelectorXL(scripts.Script):
                        style1, style2, style3, style4,
                        cat1, cat2, cat3, cat4,
                        file_status, upload_status,
+                       positive_source="prompt",
                        **kwargs):
         # 這裡才是真正把風格文字寫進 prompt 的地方。process_batch() 保證會在所有
         # 擴充套件（包含處理 wildcard 的套件）的 process() 都跑完之後才被呼叫，
@@ -914,15 +996,11 @@ class StyleSelectorXL(scripts.Script):
 
             # ---- 正向 ----
             original_prompt = prompts[local_i]
-            injected_styles = []
-            for s, c in styles:
-                if s:
-                    result = createPositive(s, "", c)
-                    if result and isinstance(result, str):
-                        injected_styles.append(result.strip())
+            positive_parts = [createPositiveParts(s, "", c) for s, c in styles if s]
+            source = getattr(self, "style_selector_positive_source", "prompt")
 
             injection_parts = []
-            style_injection = ", ".join(injected_styles)
+            style_injection = combine_positive_parts(positive_parts, source)
             if style_injection:
                 injection_parts.append(style_injection)
             if use_current_prompt and current_prompt_text and current_prompt_text.strip():
