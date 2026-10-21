@@ -339,6 +339,79 @@ def resolve_dynamic_syntax(text, _max_passes=25):
     return result
 
 
+# ---- __wildcard__ 展開 ----
+# 風格文字是在 process_batch() 才注入的，這時 Dynamic Prompts 早就在 process() 展開完使用者的
+# prompt 了，所以風格裡的 __girl__ 這類語法不會再被任何人處理，會原封不動送進模型。
+# 這裡在注入前自己展開：優先用 Dynamic Prompts 的 dynamicprompts 函式庫與它的 wildcard 資料夾
+# （與 Dynamic Prompts 的結果、語法、設定一致）；沒安裝時退回只支援 .txt 的簡易展開。
+_WILDCARD_PATTERN = re.compile(r"__([^_\s][^\s]*?)__")
+_wildcard_manager = None
+
+
+def _wildcard_dir():
+    try:
+        from sd_dynamic_prompts.paths import get_wildcard_dir
+        return str(get_wildcard_dir())
+    except Exception:
+        pass
+    configured = getattr(shared.opts, "wildcard_dir", None)
+    if configured:
+        return str(configured)
+    return os.path.join(os.path.dirname(BASE_DIR), "sd-dynamic-prompts", "wildcards")
+
+
+def _get_wildcard_manager():
+    global _wildcard_manager
+    if _wildcard_manager is None:
+        from dynamicprompts.wildcards import WildcardManager
+        _wildcard_manager = WildcardManager(_wildcard_dir())
+    return _wildcard_manager
+
+
+def _simple_expand_wildcards(text, rng, _depth=0):
+    """沒有 dynamicprompts 時的備援：__name__ → wildcard 資料夾裡 name.txt 的隨機一行。"""
+    base = _wildcard_dir()
+
+    def repl(m):
+        path = os.path.join(base, *m.group(1).split("/")) + ".txt"
+        try:
+            with open(path, "r", encoding="utf-8-sig") as f:
+                lines = [l.strip() for l in f if l.strip() and not l.lstrip().startswith("#")]
+        except OSError:
+            return m.group(0)
+        return rng.choice(lines) if lines else ""
+
+    result = _WILDCARD_PATTERN.sub(repl, text)
+    if result != text and _depth < 10 and _WILDCARD_PATTERN.search(result):
+        return _simple_expand_wildcards(result, rng, _depth + 1)
+    return result
+
+
+def expand_wildcards(text, seed=None):
+    """展開風格文字裡的 __wildcard__（以及其中再帶出的 {A|B}）。同一個 seed 結果相同。"""
+    if not text or "__" not in text or not _WILDCARD_PATTERN.search(text):
+        return text
+    try:
+        from dynamicprompts.generators import RandomPromptGenerator
+        from dynamicprompts.parser.parse import ParserConfig
+        opts = shared.opts
+        parser_config = ParserConfig(
+            variant_start=getattr(opts, "dp_parser_variant_start", "{"),
+            variant_end=getattr(opts, "dp_parser_variant_end", "}"),
+            wildcard_wrap=getattr(opts, "dp_parser_wildcard_wrap", "__"),
+        )
+        generator = RandomPromptGenerator(_get_wildcard_manager(), seed=seed, parser_config=parser_config,
+                                          ignore_whitespace=getattr(opts, "dp_ignore_whitespace", False))
+        result = generator.generate(text, 1)
+        if result:
+            return str(result[0])
+    except ImportError:
+        pass
+    except Exception as e:
+        print(f"[StyleSelector] Dynamic Prompts 無法展開 wildcard，改用簡易展開：{e}")
+    return _simple_expand_wildcards(text, random.Random(seed))
+
+
 # 正向提示要用樣式表的哪個欄位
 POSITIVE_SOURCE_CHOICES = ["prompt", "naturl_prompt", "prompt + naturl_prompt"]
 
@@ -601,6 +674,7 @@ def copy_styles_to_prompt_func(current_prompt, current_neg_prompt,
             continue
 
     new_prompt = current_prompt
+    # 不展開 __wildcard__：複製到主 prompt 後，生成時由 Dynamic Prompts 展開
     style_text = combine_positive_parts(positive_parts, positive_source)
     if style_text:
         if current_prompt.strip():
@@ -999,8 +1073,11 @@ class StyleSelectorXL(scripts.Script):
             positive_parts = [createPositiveParts(s, "", c) for s, c in styles if s]
             source = getattr(self, "style_selector_positive_source", "prompt")
 
+            # 每張圖用自己的 seed 展開風格裡的 __wildcard__（同一張圖可重現）
+            image_seed = p.all_seeds[global_i] if global_i < len(getattr(p, "all_seeds", []) or []) else None
+
             injection_parts = []
-            style_injection = combine_positive_parts(positive_parts, source)
+            style_injection = expand_wildcards(combine_positive_parts(positive_parts, source), image_seed)
             if style_injection:
                 injection_parts.append(style_injection)
             if use_current_prompt and current_prompt_text and current_prompt_text.strip():
@@ -1033,7 +1110,7 @@ class StyleSelectorXL(scripts.Script):
                             injected_neg_styles.append(result.strip())
 
                 neg_injection_parts = []
-                neg_style_injection = ", ".join(injected_neg_styles)
+                neg_style_injection = expand_wildcards(", ".join(injected_neg_styles), image_seed)
                 if neg_style_injection:
                     neg_injection_parts.append(neg_style_injection)
                 if use_current_prompt and current_neg_prompt_text and current_neg_prompt_text.strip():

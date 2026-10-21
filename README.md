@@ -53,7 +53,13 @@
   - `prompt + naturl_prompt`：先接所有風格的 tag，再接所有風格的描述。
 - 只影響正向提示；負向提示一律用 `negative_prompt`。生成時與「Copy Styles to Prompt」按鈕都會套用，infotext 會記錄 `Style Selector Positive Source`。
 
-### 9. 其他修正
+### 9. 風格裡的 `__wildcard__` 會被展開
+- 風格是在 `process_batch()` 才注入，Dynamic Prompts 早已在 `process()` 展開完使用者的 prompt，所以風格 `prompt` / `naturl_prompt` / `negative_prompt` 裡的 `__girl__` 以前會原樣送進模型。
+- 現在注入前會先展開：使用 Dynamic Prompts 的 `dynamicprompts` 函式庫與它的 wildcard 資料夾（同樣的 txt / yaml、`{A|B}` 語法與設定）；未安裝時退回只支援 `.txt` 的簡易展開。
+- 每張圖用自己的 seed 展開，同一張圖可重現；找不到的 wildcard 原樣保留（與 Dynamic Prompts 相同）。
+- 「Copy Styles to Prompt」不展開，複製到主 prompt 後由 Dynamic Prompts 在生成時展開。
+
+### 10. 其他修正
 - `createPositive` / `createNegative` 對 `None`、非字串做防護。
 - `copy_styles_to_prompt_func` 重置時把 style choices 恢復成「全部風格」。
 - UI 元件順序與 `process()` 參數順序對齊（新增 cat1~4）。
